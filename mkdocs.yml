@@ -1,0 +1,156 @@
+site_name: Underwater Glider Operations Knowledge Base
+site_url: https://e-abdi.github.io/Glider-Operation-Best-Practices/
+site_description: >-
+  Comprehensive guides, best practices, and operational checklists for
+  underwater glider deployment, recovery, maintenance, and mission planning.
+site_author: Glider Operations Team
+docs_dir: docs
+site_dir: site
+
+repo_name: e-abdi/Glider-Operation-Best-Practices
+repo_url: https://github.com/e-abdi/Glider-Operation-Best-Practices
+edit_uri: edit/main/docs/
+
+copyright: Copyright &copy; 2025 Glider Operations Team
+
+# ---------------------------------------------------------------------------
+# Theme
+# ---------------------------------------------------------------------------
+theme:
+  name: material
+  palette:
+    - scheme: default
+      primary: teal
+      accent: cyan
+      toggle:
+        icon: material/brightness-7
+        name: Switch to dark mode
+    - scheme: slate
+      primary: teal
+      accent: cyan
+      toggle:
+        icon: material/brightness-4
+        name: Switch to light mode
+  font:
+    text: Roboto
+    code: Roboto Mono
+  features:
+    - navigation.tabs
+    - navigation.tabs.sticky
+    - navigation.sections
+    - navigation.indexes
+    - navigation.expand
+    - navigation.top
+    - navigation.footer
+    - search.highlight
+    - search.share
+    - search.suggest
+    - content.tabs.link
+    - content.action.edit
+    - content.action.view
+
+extra_css:
+  - stylesheets/extra.css
+
+# ---------------------------------------------------------------------------
+# Plugins
+# ---------------------------------------------------------------------------
+plugins:
+  - search:
+      lang: en
+  - pdf-export:
+      verbose: false
+      media_type: print
+      enabled_if_env: ENABLE_PDF_EXPORT
+      combined: false
+  - minify:
+      minify_html: true
+
+# ---------------------------------------------------------------------------
+# Markdown extensions
+# ---------------------------------------------------------------------------
+markdown_extensions:
+  - admonition
+  - pymdownx.details
+  - pymdownx.superfences
+  - pymdownx.tasklist:
+      custom_checkbox: true
+  - pymdownx.tabbed:
+      alternate_style: true
+  - pymdownx.highlight:
+      anchor_linenums: true
+  - pymdownx.inlinehilite
+  - pymdownx.snippets
+  - attr_list
+  - md_in_html
+  - tables
+  - footnotes
+  - toc:
+      permalink: true
+      title: On this page
+
+# ---------------------------------------------------------------------------
+# Navigation
+# ---------------------------------------------------------------------------
+nav:
+  - Home: index.md
+
+  - Glider Lab Setup:
+    - glider-lab-setup/index.md
+    - Guides:
+      - Setting Up a Glider Facility: glider-lab-setup/guides/overview.md
+
+  - Mission Planning:
+    - mission-planning/index.md
+    - Guides:
+      - Pre-deployment & Operations: mission-planning/guides/overview.md
+    - Checklists:
+      - Mission Planning Checklist: mission-planning/checklists/checklist.md
+
+  - Lab Test:
+    - lab-test/index.md
+    - Guides:
+      - Slocum One-Pager: lab-test/guides/slocum-one-pager.md
+    - Checklists:
+      - Lab Test Checklist: lab-test/checklists/checklist.md
+
+  - Ballasting:
+    - ballasting/index.md
+    - Guides:
+      - Overview: ballasting/guides/overview.md
+    - Checklists:
+      - Ballasting Checklist: ballasting/checklists/checklist.md
+
+  - Deployment:
+    - deployment/index.md
+    - Guides:
+      - Slocum Deployment Procedure: deployment/guides/slocum-deployment-procedure.md
+    - Checklists:
+      - Slocum Deployment Checklist: deployment/checklists/slocum-deployment-checklist.md
+      - Slocum Field Kit: deployment/checklists/slocum-field-kit.md
+
+  - Recovery:
+    - recovery/index.md
+    - Guides:
+      - Overview: recovery/guides/overview.md
+    - Checklists:
+      - Recovery Checklist: recovery/checklists/checklist.md
+
+  - Maintenance:
+    - maintenance/index.md
+    - Guides:
+      - Overview: maintenance/guides/overview.md
+    - Checklists:
+      - Maintenance Checklist: maintenance/checklists/checklist.md
+
+  - Batteries:
+    - batteries/index.md
+    - Guides:
+      - Overview: batteries/guides/overview.md
+    - Checklists:
+      - Battery Handling Checklist: batteries/checklists/checklist.md
+
+  - Altimeter:
+    - altimeter/index.md
+    - Guides:
+      - Slocum Altimeter One-Pager: altimeter/guides/slocum-altimeter-one-pager.md
