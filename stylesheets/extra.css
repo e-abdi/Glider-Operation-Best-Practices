@@ -1,0 +1,110 @@
+/* ==========================================================================
+   Print and PDF styles — Glider Operations Knowledge Base
+   ========================================================================== */
+
+/* --------------------------------------------------------------------------
+   Screen: print button shown on checklist pages
+   -------------------------------------------------------------------------- */
+.print-button {
+  display: inline-block;
+  padding: 0.4em 1em;
+  background-color: var(--md-primary-fg-color);
+  color: var(--md-primary-bg-color) !important;
+  border-radius: 4px;
+  text-decoration: none !important;
+  font-size: 0.8rem;
+  cursor: pointer;
+  margin-bottom: 1em;
+}
+
+.print-button:hover {
+  background-color: var(--md-accent-fg-color);
+}
+
+/* --------------------------------------------------------------------------
+   Print media — hide navigation chrome, keep content full-width
+   -------------------------------------------------------------------------- */
+@media print {
+  .md-header,
+  .md-tabs,
+  .md-sidebar,
+  .md-footer,
+  .md-search,
+  [data-md-component="search"],
+  [data-md-component="header-topic"],
+  .md-content__button,
+  .print-button {
+    display: none !important;
+  }
+
+  .md-content {
+    max-width: 100% !important;
+    margin: 0 !important;
+    padding: 0 1cm !important;
+  }
+
+  .md-main__inner {
+    margin: 0 !important;
+  }
+
+  body {
+    font-size: 11pt;
+    color: #000 !important;
+  }
+
+  h1 { font-size: 20pt; margin-top: 0; }
+  h2 { font-size: 15pt; page-break-after: avoid; }
+  h3 { font-size: 12pt; page-break-after: avoid; }
+
+  .md-typeset .task-list-item { page-break-inside: avoid; }
+  .md-typeset .admonition { page-break-inside: avoid; }
+  table { page-break-inside: avoid; }
+
+  /* Render checkboxes as printable empty boxes */
+  .md-typeset .task-list-item input[type="checkbox"] {
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
+    width: 12pt;
+    height: 12pt;
+    border: 1.5pt solid #333;
+    display: inline-block;
+    margin-right: 6pt;
+    vertical-align: middle;
+    flex-shrink: 0;
+  }
+
+  .md-typeset .task-list-item input[type="checkbox"]:checked::after {
+    content: "✓";
+    font-size: 10pt;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  a[href]::after {
+    content: none;
+  }
+
+  pre {
+    white-space: pre-wrap;
+    border: 1pt solid #ccc;
+    padding: 0.5em;
+    font-size: 9pt;
+  }
+}
+
+/* --------------------------------------------------------------------------
+   Checklist layout improvements (screen)
+   -------------------------------------------------------------------------- */
+.md-typeset .task-list-item {
+  display: flex;
+  align-items: flex-start;
+  gap: 0.5em;
+  padding: 0.2em 0;
+  border-bottom: 1px solid var(--md-default-fg-color--lightest);
+}
+
+.md-typeset .task-list-item:last-child {
+  border-bottom: none;
+}
