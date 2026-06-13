@@ -15,7 +15,7 @@ and long-term maintenance.
 
 <div class="grid cards" markdown>
 
--   :material-lab-outline:{ .lg .middle } **Glider Lab Setup**
+-   :material-tools:{ .lg .middle } **Glider Lab Setup**
 
     ---
 
