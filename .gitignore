@@ -57,3 +57,11 @@ htmlcov/
 *.pem
 *.key
 .env.local
+*.env
+glider-forum.env
+
+# Forum scrape (private raw dump — curate before publishing)
+forum-dump/
+
+# Local tooling — kept out of the repo
+tools/

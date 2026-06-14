@@ -9,6 +9,13 @@ A structured reference for all aspects of underwater glider operations —
 from initial lab setup through deployment, in-mission monitoring, recovery,
 and long-term maintenance.
 
+!!! info "About this knowledge base"
+    The information here is an extract of vendor manuals, community forums, and
+    Slack channel discussions. The aim is to organize that scattered knowledge
+    and present it in a more structured, searchable form. It is **not** a
+    replacement for the official manufacturer documentation — always defer to
+    the manufacturer's guidance for your specific platform.
+
 ---
 
 ## Topics
@@ -54,6 +61,14 @@ and long-term maintenance.
     Vessel coordination, launch procedures, and initial dive verification.
 
     [:octicons-arrow-right-24: Go to topic](deployment/index.md)
+
+-   :material-steering:{ .lg .middle } **Piloting**
+
+    ---
+
+    Daily pilot logs, in-mission monitoring, and decision-making checklists.
+
+    [:octicons-arrow-right-24: Go to topic](piloting/index.md)
 
 -   :material-lifebuoy:{ .lg .middle } **Recovery**
 

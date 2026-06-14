@@ -136,6 +136,7 @@ nav:
       - Overview: recovery/guides/overview.md
     - Checklists:
       - Recovery Checklist: recovery/checklists/checklist.md
+      - Post-Recovery Maintenance Checklist: recovery/checklists/post-recovery-maintenance-checklist.md
 
   - Maintenance:
     - maintenance/index.md
@@ -143,6 +144,15 @@ nav:
       - Overview: maintenance/guides/overview.md
     - Checklists:
       - Maintenance Checklist: maintenance/checklists/checklist.md
+
+  - Piloting:
+    - piloting/index.md
+    - Seaglider:
+      - piloting/seaglider/index.md
+    - Slocum:
+      - piloting/slocum/index.md
+      - Checklists:
+        - Slocum Piloting Checklist: piloting/slocum/checklists/slocum-piloting-checklist.md
 
   - Glider Components:
     - glider-components/index.md
@@ -152,10 +162,16 @@ nav:
       - glider-components/slocum/index.md
       - Batteries:
         - glider-components/slocum/batteries/index.md
+        - Rechargeable: glider-components/slocum/batteries/rechargeable/index.md
+        - Primary: glider-components/slocum/batteries/primary/index.md
         - Guides:
           - Overview: glider-components/slocum/batteries/guides/overview.md
         - Checklists:
           - Battery Handling Checklist: glider-components/slocum/batteries/checklists/checklist.md
+      - Pumps:
+        - glider-components/slocum/pumps/index.md
+        - Shallow Pump: glider-components/slocum/pumps/shallow-pump/index.md
+        - Deep Pump: glider-components/slocum/pumps/deep-pump/index.md
       - Altimeter:
         - glider-components/slocum/altimeter/index.md
         - Guides:
