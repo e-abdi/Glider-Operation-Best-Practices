@@ -77,7 +77,7 @@ and long-term maintenance.
 
     Charging procedures, storage, safe handling, and capacity tracking.
 
-    [:octicons-arrow-right-24: Go to topic](batteries/index.md)
+    [:octicons-arrow-right-24: Go to topic](glider-components/slocum/batteries/index.md)
 
 -   :material-radar:{ .lg .middle } **Altimeter**
 
@@ -85,7 +85,7 @@ and long-term maintenance.
 
     Altimeter installation, configuration, and target-altitude best practices.
 
-    [:octicons-arrow-right-24: Go to topic](altimeter/index.md)
+    [:octicons-arrow-right-24: Go to topic](glider-components/slocum/altimeter/index.md)
 
 </div>
 

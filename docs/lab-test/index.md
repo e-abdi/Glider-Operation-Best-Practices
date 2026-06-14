@@ -21,14 +21,6 @@ The lab test is the final verification gate between the workshop and the ocean. 
 
     [:octicons-arrow-right-24: View One-Pager](guides/slocum-one-pager.md)
 
--   :material-format-list-checks: **Lab Test Checklist**
-
-    ---
-
-    Printable pre-deployment lab test checklist with sign-off fields for operator and reviewer.
-
-    [:octicons-arrow-right-24: Open Checklist](checklists/checklist.md)
-
 </div>
 
 ---

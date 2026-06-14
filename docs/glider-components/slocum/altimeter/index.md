@@ -12,7 +12,7 @@ An underwater glider's altimeter is the primary instrument for preventing seabed
     |---|---|
     | Typical setup time | 30 min |
     | Minimum personnel | 1 |
-    | Related topics | [Mission Planning](../mission-planning/index.md), [Lab Test](../lab-test/index.md) |
+    | Related topics | [Mission Planning](../../../mission-planning/index.md), [Lab Test](../../../lab-test/index.md) |
 
 ## What This Section Covers
 

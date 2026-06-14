@@ -18,6 +18,7 @@ copyright: Copyright &copy; 2025 Glider Operations Team
 # ---------------------------------------------------------------------------
 theme:
   name: material
+  custom_dir: overrides
   palette:
     - scheme: default
       primary: teal
@@ -114,8 +115,6 @@ nav:
     - lab-test/index.md
     - Guides:
       - Slocum One-Pager: lab-test/guides/slocum-one-pager.md
-    - Checklists:
-      - Lab Test Checklist: lab-test/checklists/checklist.md
 
   - Ballasting:
     - ballasting/index.md
@@ -146,14 +145,19 @@ nav:
     - Checklists:
       - Maintenance Checklist: maintenance/checklists/checklist.md
 
-  - Batteries:
-    - batteries/index.md
-    - Guides:
-      - Overview: batteries/guides/overview.md
-    - Checklists:
-      - Battery Handling Checklist: batteries/checklists/checklist.md
-
-  - Altimeter:
-    - altimeter/index.md
-    - Guides:
-      - Slocum Altimeter One-Pager: altimeter/guides/slocum-altimeter-one-pager.md
+  - Glider Components:
+    - glider-components/index.md
+    - Seaglider:
+      - glider-components/seaglider/index.md
+    - Slocum:
+      - glider-components/slocum/index.md
+      - Batteries:
+        - glider-components/slocum/batteries/index.md
+        - Guides:
+          - Overview: glider-components/slocum/batteries/guides/overview.md
+        - Checklists:
+          - Battery Handling Checklist: glider-components/slocum/batteries/checklists/checklist.md
+      - Altimeter:
+        - glider-components/slocum/altimeter/index.md
+        - Guides:
+          - Slocum Altimeter One-Pager: glider-components/slocum/altimeter/guides/slocum-altimeter-one-pager.md
