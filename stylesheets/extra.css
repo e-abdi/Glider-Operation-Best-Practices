@@ -95,6 +95,35 @@
 }
 
 /* --------------------------------------------------------------------------
+   Platform graphics (Glider Components)
+   -------------------------------------------------------------------------- */
+
+/* Small icon-sized image used inside the platform "grid cards" */
+.md-typeset .platform-icon {
+  display: block;
+  width: 64px;
+  height: 64px;
+  object-fit: contain;
+  margin: 0 0 0.4em 0;
+}
+
+/* Larger banner image at the top of a platform landing page */
+.md-typeset .platform-banner {
+  display: block;
+  width: 180px;
+  max-width: 100%;
+  height: auto;
+  margin: 0.5em 0 1em 0;
+}
+
+/* The artwork is black line-art on a transparent/white background.
+   In dark mode, invert so the lines read as light on the dark surface. */
+[data-md-color-scheme="slate"] .md-typeset .platform-icon,
+[data-md-color-scheme="slate"] .md-typeset .platform-banner {
+  filter: invert(1) hue-rotate(180deg);
+}
+
+/* --------------------------------------------------------------------------
    Checklist layout improvements (screen)
    -------------------------------------------------------------------------- */
 .md-typeset .task-list-item {
