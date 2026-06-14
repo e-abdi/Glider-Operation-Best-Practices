@@ -1,10 +1,11 @@
 ---
 title: Slocum
 description: Sensors, subsystems, and equipment for the Slocum glider platform.
-icon: glider/slocum
 ---
 
 # Slocum Components
+
+![Slocum](../images/slocum.svg){ .platform-banner }
 
 Documentation for Slocum glider hardware components and subsystems.
 
@@ -20,7 +21,7 @@ Documentation for Slocum glider hardware components and subsystems.
 
     [:octicons-arrow-right-24: Batteries](batteries/index.md)
 
--   :material-sonar: **Altimeter**
+-   :material-altimeter: **Altimeter**
 
     ---
 

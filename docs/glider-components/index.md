@@ -11,7 +11,9 @@ Platform-specific documentation for underwater glider hardware: sensors, subsyst
 
 <div class="grid cards" markdown>
 
--   **Seaglider**
+-   ![Seaglider](images/seaglider.png){ .platform-icon }
+
+    **Seaglider**
 
     ---
 
@@ -19,7 +21,9 @@ Platform-specific documentation for underwater glider hardware: sensors, subsyst
 
     [:octicons-arrow-right-24: Seaglider Components](seaglider/index.md)
 
--   **Slocum**
+-   ![Slocum](images/slocum.svg){ .platform-icon }
+
+    **Slocum**
 
     ---
 

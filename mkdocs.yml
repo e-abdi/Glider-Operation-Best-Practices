@@ -18,7 +18,6 @@ copyright: Copyright &copy; 2025 Glider Operations Team
 # ---------------------------------------------------------------------------
 theme:
   name: material
-  custom_dir: overrides
   palette:
     - scheme: default
       primary: teal
