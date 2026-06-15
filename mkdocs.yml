@@ -133,7 +133,7 @@ nav:
   - Recovery:
     - recovery/index.md
     - Guides:
-      - Overview: recovery/guides/overview.md
+      - Slocum Recovery Remote Pilot Procedure: recovery/guides/slocum-recovery-remote-pilot-procedure.md
     - Checklists:
       - Recovery Checklist: recovery/checklists/checklist.md
       - Post-Recovery Maintenance Checklist: recovery/checklists/post-recovery-maintenance-checklist.md

@@ -5,20 +5,20 @@ description: Surface approach, retrieval, and immediate post-recovery inspection
 
 # Recovery
 
-Surface approach, retrieval, and immediate post-recovery inspection and
+Remote piloting commands, surface approach, retrieval, and immediate post-recovery inspection and
 maintenance.
 
 ## In This Section
 
 <div class="grid cards" markdown>
 
--   :material-book-open-variant: **Overview**
+-   :material-book-open-variant: **Slocum Recovery Remote Pilot Procedure**
 
     ---
 
     Recovery procedures and guidance.
 
-    [:octicons-arrow-right-24: Overview](guides/overview.md)
+    [:octicons-arrow-right-24: Slocum Recovery Remote Pilot Procedure](guides/slocum-recovery-remote-pilot-procedure.md)
 
 -   :material-clipboard-check-outline: **Recovery Checklist**
 
