@@ -1,9 +1,9 @@
 ---
-title: SubConn® One-Pager
-description: Quick-reference handling, greasing, mating, cleaning, and bend-radius guide for MacArtney SubConn underwater connectors.
+title: SubConn® Installation Instructions
+description: Handling, greasing, mating, cleaning, and bend-radius instructions for MacArtney SubConn underwater connectors.
 ---
 
-# SubConn® One-Pager
+# SubConn® Installation Instructions
 
 Quick-reference handling instructions for MacArtney **SubConn®** underwater connectors. Follow these carefully to ensure correct use and a reliable seal.
 
