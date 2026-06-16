@@ -1,9 +1,9 @@
 ---
-title: IE55 One-Pager
-description: Quick-reference lubrication, alignment, mating, and seal-inspection guide for the Teledyne Impulse IE55 subminature connector.
+title: IE55 Installation Instructions
+description: Lubrication, alignment, mating, and seal-inspection instructions for the Teledyne Impulse IE55 subminature connector.
 ---
 
-# IE55 One-Pager
+# IE55 Installation Instructions
 
 Quick-reference mating and inspection procedure for the **Teledyne Impulse IE55 subminature** connector.
 
