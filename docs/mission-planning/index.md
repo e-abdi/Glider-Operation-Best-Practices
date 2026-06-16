@@ -12,6 +12,13 @@ Mission planning translates science objectives and operational constraints into 
 ## In This Section
 
 <div class="grid cards" markdown>
+-   :material-book-open-outline: **Mission Planning Map**
+
+    ---
+
+    Map of step-by-step procedure covering objective definition, area selection, waypoint design, dive parameter configuration, risk assessment, and permit filing.
+
+    [:octicons-arrow-right-24: View Guide](guides/mission-planning-map.md)
 
 -   :material-book-open-outline: **Mission Planning Guide**
 
