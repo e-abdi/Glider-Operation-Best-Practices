@@ -156,6 +156,11 @@ nav:
 
   - Glider Components:
     - glider-components/index.md
+    - Connectors:
+      - glider-components/connectors/index.md
+      - Guides:
+        - SubConn One-Pager: glider-components/connectors/guides/subconn-one-pager.md
+        - IE55 One-Pager: glider-components/connectors/guides/ie55-one-pager.md
     - Seaglider:
       - glider-components/seaglider/index.md
     - Slocum:
