@@ -32,3 +32,17 @@ Platform-specific documentation for underwater glider hardware: sensors, subsyst
     [:octicons-arrow-right-24: Slocum Components](slocum/index.md)
 
 </div>
+
+## Cross-Platform
+
+<div class="grid cards" markdown>
+
+-   :material-connection: **Connectors**
+
+    ---
+
+    Greasing, mating, cleaning, and seal inspection for SubConn and IE55 underwater connectors.
+
+    [:octicons-arrow-right-24: Connectors](connectors/index.md)
+
+</div>

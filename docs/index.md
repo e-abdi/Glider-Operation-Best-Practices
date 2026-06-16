@@ -62,14 +62,6 @@ and long-term maintenance.
 
     [:octicons-arrow-right-24: Go to topic](deployment/index.md)
 
--   :material-steering:{ .lg .middle } **Piloting**
-
-    ---
-
-    Daily pilot logs, in-mission monitoring, and decision-making checklists.
-
-    [:octicons-arrow-right-24: Go to topic](piloting/index.md)
-
 -   :material-lifebuoy:{ .lg .middle } **Recovery**
 
     ---
@@ -86,21 +78,21 @@ and long-term maintenance.
 
     [:octicons-arrow-right-24: Go to topic](maintenance/index.md)
 
--   :material-battery-charging-outline:{ .lg .middle } **Batteries**
+-   :material-steering:{ .lg .middle } **Piloting**
 
     ---
 
-    Charging procedures, storage, safe handling, and capacity tracking.
+    Daily pilot logs, in-mission monitoring, and decision-making checklists.
 
-    [:octicons-arrow-right-24: Go to topic](glider-components/slocum/batteries/index.md)
+    [:octicons-arrow-right-24: Go to topic](piloting/index.md)
 
--   :material-radar:{ .lg .middle } **Altimeter**
+-   :material-chip:{ .lg .middle } **Glider Components**
 
     ---
 
-    Altimeter installation, configuration, and target-altitude best practices.
+    Hardware components, sensors, and subsystems — batteries, pumps, altimeter, and connectors.
 
-    [:octicons-arrow-right-24: Go to topic](glider-components/slocum/altimeter/index.md)
+    [:octicons-arrow-right-24: Go to topic](glider-components/index.md)
 
 </div>
 
