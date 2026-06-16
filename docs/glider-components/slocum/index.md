@@ -29,4 +29,12 @@ Documentation for Slocum glider hardware components and subsystems.
 
     [:octicons-arrow-right-24: Altimeter](altimeter/index.md)
 
+-   :material-pump: **Pumps**
+
+    ---
+
+    Installation, configuration, settings, and performance verification.
+
+    [:octicons-arrow-right-24: Pumps](pumps/index.md)
+
 </div>

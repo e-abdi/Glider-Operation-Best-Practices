@@ -26,6 +26,20 @@ Each topic contains **Guides** (step-by-step procedures) and **Checklists** (pri
 
 ---
 
+## Mermaid Diagrams
+
+This knowledge base supports Mermaid diagrams.
+
+Example:
+
+```mermaid
+flowchart TD
+    A[Mission Planning]
+    --> B[Deployment]
+```
+
+---
+
 ## Running Locally
 
 ```bash

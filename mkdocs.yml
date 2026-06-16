@@ -52,6 +52,15 @@ theme:
 extra_css:
   - stylesheets/extra.css
 
+
+# ---------------------------------------------------------------------------
+# Javascript
+# ---------------------------------------------------------------------------
+extra_javascript:
+  - javascripts/mermaid.min.js
+  - javascripts/mermaid.js
+
+
 # ---------------------------------------------------------------------------
 # Plugins
 # ---------------------------------------------------------------------------
@@ -72,7 +81,6 @@ plugins:
 markdown_extensions:
   - admonition
   - pymdownx.details
-  - pymdownx.superfences
   - pymdownx.tasklist:
       custom_checkbox: true
   - pymdownx.tabbed:
@@ -91,6 +99,12 @@ markdown_extensions:
   - toc:
       permalink: true
       title: On this page
+  - pymdownx.superfences:
+      custom_fences:
+        - name: mermaid
+          class: mermaid
+          format: !!python/name:pymdownx.superfences.fence_code_format
+
 
 # ---------------------------------------------------------------------------
 # Navigation
@@ -106,6 +120,7 @@ nav:
   - Mission Planning:
     - mission-planning/index.md
     - Guides:
+      - Map Pre-deployment & Operations: mission-planning/guides/mission-planning-map.md
       - Pre-deployment & Operations: mission-planning/guides/overview.md
     - Checklists:
       - Mission Planning Checklist: mission-planning/checklists/checklist.md
@@ -156,16 +171,33 @@ nav:
 
   - Glider Components:
     - glider-components/index.md
-    - Connectors:
-      - glider-components/connectors/index.md
-      - Guides:
-        - SubConn Installation Instructions: glider-components/connectors/guides/subconn-installation-instructions.md
-        - IE55 Installation Instructions: glider-components/connectors/guides/ie55-installation-instructions.md
-      - Pinouts: glider-components/connectors/pinouts.md
+
+    - Shared:
+      - glider-components/shared/index.md
+
     - Seaglider:
       - glider-components/seaglider/index.md
+
+      - Batteries:
+        - glider-components/seaglider/batteries/index.md
+        - Guides:
+          - Overview: glider-components/seaglider/batteries/guides/overview.md
+        - Checklists:
+          - Battery Handling Checklist: glider-components/seaglider/batteries/checklists/checklist.md
+
+      - Altimeter:
+        - glider-components/seaglider/altimeter/index.md
+        - Guides:
+          - Overview: glider-components/seaglider/altimeter/guides/index.md
+
+      - VBDs:
+        - glider-components/seaglider/vbds/index.md
+        - Guides:
+          - Overview: glider-components/seaglider/vbds/guides/index.md
+
     - Slocum:
       - glider-components/slocum/index.md
+
       - Batteries:
         - glider-components/slocum/batteries/index.md
         - Rechargeable: glider-components/slocum/batteries/rechargeable/index.md
@@ -174,11 +206,14 @@ nav:
           - Overview: glider-components/slocum/batteries/guides/overview.md
         - Checklists:
           - Battery Handling Checklist: glider-components/slocum/batteries/checklists/checklist.md
+
       - Pumps:
         - glider-components/slocum/pumps/index.md
         - Shallow Pump: glider-components/slocum/pumps/shallow-pump/index.md
         - Deep Pump: glider-components/slocum/pumps/deep-pump/index.md
+
       - Altimeter:
         - glider-components/slocum/altimeter/index.md
         - Guides:
           - Slocum Altimeter One-Pager: glider-components/slocum/altimeter/guides/slocum-altimeter-one-pager.md
+
