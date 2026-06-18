@@ -37,4 +37,12 @@ Documentation for Slocum glider hardware components and subsystems.
 
     [:octicons-arrow-right-24: Pumps](pumps/index.md)
 
+-   :material-screw-machine-flat-top: **Tie Rod**
+
+    ---
+
+    What the internal tie rod is, how it opens and closes the glider, torque specs, and field tips.
+
+    [:octicons-arrow-right-24: Tie Rod](tie-rod/index.md)
+
 </div>

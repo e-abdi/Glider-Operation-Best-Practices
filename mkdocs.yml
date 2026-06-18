@@ -216,4 +216,4 @@ nav:
         - glider-components/slocum/altimeter/index.md
         - Guides:
           - Slocum Altimeter One-Pager: glider-components/slocum/altimeter/guides/slocum-altimeter-one-pager.md
-
+      - Tie Rod: glider-components/slocum/tie-rod/index.md

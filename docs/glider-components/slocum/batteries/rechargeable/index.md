@@ -292,3 +292,60 @@ positions 1–16, the bits that are **on** are **4, 6, 10, 11, 14, 15**.
     voltage drops to **≤ 2300 mV**. Recovering from this requires an initial low
     (pre-charge) to reactivate the electronics before normal charging. Any SMBus
     v1.0+ compatible charger can supply this pre-charge.
+
+---
+
+## Field Notes: Capacity, Discharge & Checkout
+
+!!! info "Source"
+    Operator experience from the UG2 community Slack. These are real-world
+    observations, not specifications — defer to TWR for authoritative numbers.
+
+### Discharge behaviour
+
+- Recommended config is roughly **`f_coulomb_battery_capacity` 215 Ah** (standard)
+  / **300 Ah** (extended), with an **undervolts abort around 12–12.8 V**.
+- Unlike lithium *primary* packs, the rechargeables have **little or no real
+  "shelf."** Voltage falls fairly linearly toward ~12.2 V, then drops steeply,
+  with the electronics shutting off near **10 V**. Set undervolts conservatively
+  and don't count on a shelf to fly home.
+- **Discharge rate matters.** Usable capacity depends heavily on how hard you pull
+  the pack — bench-testing an extended pack to a 12 V cutoff at a continuous
+  6.7 A (≈1000 m pumping draw) yielded ~309 Ah, versus ~285 Ah when the *same*
+  pack hit the 12 V undervolts on a real mission; dropping to 2 A and a 10 V
+  cutoff squeezed out ~326 Ah. Test at realistic mission rates, ideally after a
+  mission to find the true endpoint.
+- Real-world reference: three consecutive 30-day missions (recharged overnight
+  between) each drew **~140 Ah**, starting near **16.2 V** and ending **14.0–14.4 V**.
+
+### Pre-deployment checkout
+
+- **Always verify communication with every pack** as part of checkout — query via
+  `talk battery` (see above) and confirm all cells respond.
+- The **aft pack's aft connector latch** tends to come loose or break during
+  assembly — a frequent cause of a pack that won't talk or that drops voltage
+  early.
+- The **energy-bay and pitch battery wiring harnesses look identical but are
+  not** — a swapped harness has caused garbled/absent pack output and unexplained
+  capacity loss. Confirm the right harness on the right pack.
+- As with primary packs, re-check the compass (four-point check) after installing
+  batteries.
+
+!!! danger "Mainboard H-bridge clearance"
+    With lithium-ion packs the clearance between the **underside of the main board
+    (pump H-bridge)** and the battery hardware is tight. Battery bracketry can rake
+    the board during assembly/disassembly and damage the pump H-bridge FET —
+    symptoms include the glider beeping and resetting when **retracting** the
+    ballast pump (extend still works). Seat packs carefully and watch that
+    clearance.
+
+### G2 vs. G3 wiring
+
+- On a **G3**, rechargeable packs connect to the **lithium circuit** — the glider
+  powers on as soon as the battery is connected.
+- On a **G2**, rechargeables typically connect to the **alkaline circuit**
+  instead. The Li-ion pitch pack also sits further forward of the ACME nut, so the
+  **pitch-motor calibration may need adjusting**.
+
+See [Lithium safety on vessels](../primary/index.md#lithium-safety-on-vessels)
+for charging, fire, and transport precautions that apply to these packs.
