@@ -309,6 +309,15 @@ positions 1–16, the bits that are **on** are **4, 6, 10, 11, 14, 15**.
   "shelf."** Voltage falls fairly linearly toward ~12.2 V, then drops steeply,
   with the electronics shutting off near **10 V**. Set undervolts conservatively
   and don't count on a shelf to fly home.
+
+!!! danger "At 10 V the pack shuts off — and stays off for ~32 hours"
+    The protection circuit **hard-disconnects the pack near 10 V**. Once that
+    happens the glider goes dark, and you then wait roughly **32 hours** for the
+    independent **emergency circuit** to wake the vehicle into emergency mode (and
+    Argos) — a long gap with no Iridium and no console. Because the drop from
+    ~12.2 V to 10 V is steep and there is no shelf to fly home on, set **undervolts
+    high enough to leave margin for your full recovery window** rather than chasing
+    the last amp-hour. This has already caught at least one G3 operator.
 - **Discharge rate matters.** Usable capacity depends heavily on how hard you pull
   the pack — bench-testing an extended pack to a 12 V cutoff at a continuous
   6.7 A (≈1000 m pumping draw) yielded ~309 Ah, versus ~285 Ah when the *same*

@@ -13,9 +13,9 @@ rod is what pulls the mating hulls over their O-ring seals and squares them up.
 
 !!! info "Source"
     Paraphrased from the *Slocum G3 Glider Maintenance Manual* (Rev. A), the
-    UG2 community Slack (#general), and the Teledyne Webb Research user forum
-    (lab-testing, t=337). This is a condensed field reference — always defer to
-    the official Teledyne documentation for your specific glider.
+    UG2 community Slack, and the Teledyne Webb Research user forum. This is a
+    condensed field reference — always defer to the official Teledyne
+    documentation for your specific glider.
 
 ---
 
@@ -43,6 +43,17 @@ T-handle** engages the rod end:
     Take care not to damage the sealing surface or cross the threads with the
     side of the tool assembly. Keep payload-bay and battery cabling clear of the
     guide tube so it does not impede the rod as it is inserted.
+
+!!! note "Why 15 inch-pounds — the glider is built to 'burp'"
+    The 15 in-lb figure is used as a **safety limit**. It intentionally **under-tensions** the hull so that, if internal
+    pressure ever builds up — most importantly during a **battery thermal-runaway
+    event** — the glider will **"burp"**: momentarily flex and vent at a hull seam
+    instead of failing explosively. In an old TWR demonstration a glider was
+    pressurized with air and physically bent and burped at a seam, relieving the
+    pressure. Over-tightening past 15 in-lb defeats this relief path. (The
+    behavior was characterized on **single-seal** G1/G2 hulls; the G3
+    **double-seal** hull has not been formally re-tested for the pressure at which
+    it burps.)
 
 ---
 

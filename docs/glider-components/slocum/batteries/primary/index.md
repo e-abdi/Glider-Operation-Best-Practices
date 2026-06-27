@@ -94,6 +94,25 @@ onto a **shelf** near end of life before a final steep decline to shutoff (~10 V
 
 ---
 
+## Passivation after storage
+
+Lithium primary (thionyl-chloride) cells form a **passivation layer** on the
+anode when they sit unused. The layer is normal and self-healing, but it **limits
+how much current the pack can deliver until it is "burned off."** A glider that
+has been in storage for months can power on and run light loads fine, then **fail
+to source the high current the buoyancy pump needs to pump out at depth** — giving
+a stalled or very short first mission.
+
+!!! tip "Wake the pack with step-down dives"
+    After extended storage, **don't send the glider straight to full depth.** Fly a
+    series of progressively deeper **step-down dives** so the rising pump load
+    burns off the passivation layer gradually. This also gives you frequent early
+    comms and a look at the data before committing to long deep dives. Rechargeable
+    Li-ion packs are **not** believed to passivate the same way, but step-down dives
+    are good practice regardless.
+
+---
+
 ## Switching between alkaline and lithium
 
 Swapping chemistry is more than a battery change — several hardware and software

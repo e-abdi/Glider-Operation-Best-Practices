@@ -166,6 +166,8 @@ nav:
       - piloting/seaglider/index.md
     - Slocum:
       - piloting/slocum/index.md
+      - Power Saving: piloting/slocum/power-saving.md
+      - Passive Acoustic Monitoring: piloting/slocum/passive-acoustic-monitoring.md
       - Checklists:
         - Slocum Piloting Checklist: piloting/slocum/checklists/slocum-piloting-checklist.md
 
@@ -212,8 +214,18 @@ nav:
         - Shallow Pump: glider-components/slocum/pumps/shallow-pump/index.md
         - Deep Pump: glider-components/slocum/pumps/deep-pump/index.md
 
+      - Pitch Vernier: glider-components/slocum/pitch/index.md
+
       - Altimeter:
         - glider-components/slocum/altimeter/index.md
         - Guides:
           - Slocum Altimeter One-Pager: glider-components/slocum/altimeter/guides/slocum-altimeter-one-pager.md
       - Tie Rod: glider-components/slocum/tie-rod/index.md
+
+      - Freewave: glider-components/slocum/freewave/index.md
+
+      - Iridium: glider-components/slocum/iridium/index.md
+
+      - Argos: glider-components/slocum/argos/index.md
+
+      - Fin / Digifin: glider-components/slocum/digifin/index.md
