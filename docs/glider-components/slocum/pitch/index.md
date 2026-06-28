@@ -209,7 +209,7 @@ aborting for "pitch battery not moving," or the pot is failing, you can fly
     | Bench test | `lab_mode on` → `wiggle on` → `report ++ m_battpos` |
     | Securing screw threadlock | **Loctite 243 (blue)** |
 
-!!! note "Coming later"
-    A separate **Autoballast** page (under *Piloting*) will cover how the glider
-    automatically tunes its dive depth and buoyancy — pitch trim and autoballast
-    interact, but they're documented separately.
+!!! note "See also"
+    The [**Autoballast**](../../../piloting/slocum/autoballast.md) page (under
+    *Piloting*) covers how the glider automatically tunes its buoyancy drive —
+    pitch trim and autoballast interact, but they're documented separately.

@@ -94,11 +94,11 @@ sensor: u_alt_min_depth(m) <as deep as comfortable>
 
 ### Fly the buoyancy and pitch motors gently
 
-- **Use autoballast.** TWR highly recommends autoballast on G3 specifically for
-  energy conservation (and to avoid unnecessary speed). With 8.0+, default flight
-  drive is **±260 cc**; using the full HD drive (toward ±1000 cc) "significantly
-  increases energy consumed" — and legacy ±1000 cc missions can cause fast,
-  steep, uncontrolled dives in shallow water.
+- **Use [autoballast](autoballast.md).** TWR highly recommends autoballast on G3
+  specifically for energy conservation (and to avoid unnecessary speed). With
+  8.0+, default flight drive is **±260 cc**; using the full HD drive (toward
+  ±1000 cc) "significantly increases energy consumed" — and legacy ±1000 cc
+  missions can cause fast, steep, uncontrolled dives in shallow water.
 - **Dive deep and slow.** Fewer inflections per unit of data; minimize the
   buoyancy drive used per yo.
 - **Shallow pitch angle.** Operators fly endurance missions as low as **~18°**

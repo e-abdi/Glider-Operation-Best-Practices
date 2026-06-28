@@ -21,6 +21,22 @@ Piloting documentation for the Slocum glider platform.
 
     [:octicons-arrow-right-24: Slocum Piloting Checklist](checklists/slocum-piloting-checklist.md)
 
+-   :material-alert-octagon-outline: **Aborts**
+
+    ---
+
+    Reading and responding to aborts: the three abort types, the drop weight, the abort-code list, the `abend` behavior, and a field guide to the aborts you actually see.
+
+    [:octicons-arrow-right-24: Aborts](aborts.md)
+
+-   :material-scale-balance: **Autoballast**
+
+    ---
+
+    How the glider auto-tunes its buoyancy drive — centering dive/climb for a 1:1 speed ratio and the lowest drive that flies, plus setup, monitoring, and resetting it in the field.
+
+    [:octicons-arrow-right-24: Autoballast](autoballast.md)
+
 -   :material-battery-heart-variant: **Power Saving**
 
     ---

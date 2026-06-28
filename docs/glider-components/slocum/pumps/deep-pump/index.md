@@ -124,6 +124,40 @@ battery, and frequently **cannot be reproduced in the lab**.
   for where fresh oil appears. (Running the oil pump without vacuum is acceptable
   only in this limited way.)
 
+### "Oil flux too slow" / oil volume out of deadband
+
+A dive that suddenly can't move oil — the pump appearing **unable to shift past a
+fixed volume** (e.g. stuck near −97 cc) — typically logs:
+
+```
+de_pump: oil flux too slow: -0.068382 (cc/sec), minimum flux limit: 0.100000
+DRIVER_ODDITY:de_pump:410:de_pump_safety_check(): oil flux oddity
+DRIVER_WARNING:de_pump:410:Error from pump safety check
+DRIVER_ODDITY:de_pump:0:oil volume out of deadband
+:OOD:de_pump_ctrl:OUT OF DEADBAND: M_su:-91.8 C_su:-260.0  delta:168.2 limit:20.0 ...
+```
+
+`de_pump_safety_check()` compares how fast oil is actually moving against the
+**minimum flux limit (~0.1 cc/s)**; "out of deadband" means measured (`M_su`) and
+commanded (`C_su`) oil volume have diverged by more than the allowed deadband.
+Two common causes:
+
+- **A torn / lacerated oil bladder (most often the real cause).** Water gets in
+  and the oil–water mix pumps poorly, so the pump can't reach commanded volume.
+  Operators seeing persistent slow-flux / wrong-direction messages have
+  repeatedly recovered to find a **laceration on the oil bladder** — frequently
+  from the **nose recovery spool retaining clip** whose edges were not sanded
+  after replacement (a sharp edge nicks the bladder when it contacts in the same
+  orientation dive after dive). High inflection counts raise the odds.
+- **A glitching oil potentiometer.** A few bad position readings can mimic the
+  same messages while the pump actually moves oil fine. Cross-check the
+  `m_de_oil_vol` trace: a *real* problem shows commanded volume never reached over
+  a whole dive; a sensor glitch shows isolated bad samples.
+
+An `oil flux in wrong direction` message alongside the above strengthens the
+bladder diagnosis. Either way it is not fixable at sea — plan a recovery and have
+TWR inspect/replace the bladder and oil system.
+
 ### Pump fault / stuck
 
 - **`DRIVER_ODDITY: ... Buoyancy Pump is FAULTED!`** with `MOVE ERROR Error

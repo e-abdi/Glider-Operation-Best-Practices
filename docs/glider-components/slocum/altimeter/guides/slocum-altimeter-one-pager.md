@@ -7,10 +7,11 @@ description: Quick-reference guide for testing, configuring, and troubleshooting
 
 !!! info "Source"
     Paraphrased and consolidated from the *Slocum G3 Glider Maintenance Manual*,
-    the Teledyne Webb Research (TWR) user forum, and the UG2 community Slack.
-    This is a condensed field reference — always defer to official Teledyne
-    documentation and contact Glider Support before changing altimeter behaviour
-    on a deployed vehicle.
+    the TWR *Slocum Glider RS-232 Altimeter Guide* (Rev. 2022-03-10), TWR
+    altimeter wiring/diagnostics notes, the Teledyne Webb Research (TWR) user
+    forum, and the UG2 community Slack. This is a condensed field reference —
+    always defer to official Teledyne documentation and contact Glider Support
+    before changing altimeter behaviour on a deployed vehicle.
 
 ---
 
@@ -47,6 +48,21 @@ If an altimeter reads nothing at all, suspect the wiring before the sensor:
 remove the nose cone and confirm the altimeter wire harnesses are **fully
 seated**, then re-run the Functional Checkout procedure.
 
+??? note "Altimeter wiring chain (for continuity diagnosis)"
+    The altimeter signal runs from the transducer's **impulse connector** all the
+    way aft. Knowing the chain helps when tracing a dead altimeter:
+
+    - **Impulse connector (front):** pin 1 → red (Tx live), pin 2 → black
+      (Tx ground), pin 3 → recovery.
+    - The red/white/black wires plug into **JH126** on the forward harness and run
+      up to **JH100**, which plugs into the payload (science) bay:
+      black 1 → pin 7, red 2 → pin 6, white 3 → pin 5.
+    - The altimeter wiring then runs through the science bay to **J65**, which
+      plugs into the aft tray.
+
+    Connector designations vary by build — confirm against your vehicle's wiring
+    drawings before unmating anything.
+
 ---
 
 ## Analog vs. digital control board (`altimeter` vs `altimeter_232`)
@@ -55,10 +71,10 @@ Two control boards exist, and **knowing which one your glider has is essential**
 the wrong device name in `autoexec.mi` is a common reason an altimeter "doesn't
 work."
 
-| Board | Device name in `autoexec.mi` | Notes |
-|---|---|---|
-| Analog (AD) board | `altimeter` | Original board |
-| Digital RS-232 board | `altimeter_232` | Newer board on some G3S gliders |
+| Board | Device name in `autoexec.mi` | TWR part no. | Notes |
+|---|---|---|---|
+| Analog (AD) board | `altimeter` | E-388 | Original Airmar analog board |
+| Digital RS-232 board | `altimeter_232` | 313454-NFC | Newer board on some G3S gliders; needs **software release V10.07 or later** |
 
 - The two boards are **not interchangeable by name**: if the device listed in
   `autoexec.mi` doesn't match the installed board, the glider may not recognise
@@ -77,6 +93,64 @@ work."
 - TWR publishes a *Slocum Glider RS-232 Altimeter Guide* describing the digital
   board — request it from Glider Support if you operate `altimeter_232` vehicles.
 
+### Running an `altimeter_232` (digital RS-232 board)
+
+When a glider carries the digital board, several things change from the analog
+board's defaults and habits:
+
+**`autoexec.mi`:**
+
+- List **`altimeter_232`** under installed devices and **remove `altimeter`**
+  (the two cannot both be installed).
+- TWR recommends adding two sensors to override the masterdata defaults for the
+  digital board:
+
+```
+sensor: f_airmar_altimeter_time_until_good_reading(s) 12   # longer boot time of the 232 (default 4)
+sensor: u_max_altimeter(m)                            200  # larger expected range of the 232 (default 100)
+```
+
+**Behaviour and quirks:**
+
+- In a mission the `altimeter_232` should behave the same as the analog board
+  (`c_alt_time 0` = ping as fast as possible, `c_alt_time -1` = off). Keep
+  `u_alt_reduced_usage_mode 1` in most cases.
+- **`m_altimeter_voltage` produces no output** on the digital board — the analog
+  "2.5 V = no echo" diagnostic does **not** apply (see the 232 functional test
+  below).
+- **`adtest altimeter` is obsolete**; use **`talk altimeter`** instead.
+- The 232 has **greater range** — TWR has operationally observed up to ~**130 m**
+  (vs ~100 m on the analog board), and more may be possible.
+- The clicking cadence sounds slightly different from the analog board.
+
+!!! warning "Power-down gotcha: `c_alt_time` must exceed the boot time"
+    If you turn the altimeter on by setting `c_alt_time ≥ 0` (rather than letting
+    a mission drive it), `c_alt_time` must be **greater than**
+    `f_airmar_altimeter_time_until_good_reading` or the board never powers down
+    between samples and wastes energy. Example: with the recommended
+    `f_airmar_altimeter_time_until_good_reading 12`, `c_alt_time 10` keeps the
+    board powered continuously, while `c_alt_time 15` lets it power down between
+    samples. (Not an issue when a mission sets `c_alt_time`.)
+
+!!! tip "Power the board off when sitting in air"
+    The masterdata default for `c_alt_time` is `0` (on at boot). If the glider
+    will be powered on and sitting in air for a while, `put c_alt_time -1` to
+    power the altimeter board off.
+
+**Glider modularity (mixing forward and aft sections):**
+
+- The aft-section/science-bay connector **`305912-NFC` (Rev. C)** was modified to
+  carry the extra altimeter line to the SOM carrier board. It is **backwards
+  compatible** with the analog board.
+- To run an `altimeter_232` forward section against an aft section not built for
+  it, install the Rev. C `305912-NFC` connector and make the software changes
+  above.
+- To run an analog forward section against an aft section built for the 232, the
+  Rev. C connector works as-is — but revert the software: remove `altimeter_232`,
+  install `altimeter`, and restore the masterdata defaults for
+  `f_airmar_altimeter_time_until_good_reading` (4 s) and `u_max_altimeter`
+  (100 m) by commenting those lines out of `autoexec.mi`.
+
 ---
 
 ## How to Test
@@ -91,6 +165,20 @@ work."
 
 !!! note "m_altimeter_voltage = 2.5V"
     This means the altimeter is not seeing an echo within its 100 m range. Try tapping the transducer face with a finger to simulate an echo.
+
+**Testing the digital `altimeter_232` board** (the voltage/click method above
+does **not** work — `m_altimeter_voltage` never updates):
+
+1. `put c_alt_time 0` — power the altimeter on.
+2. `put u_alt_debug 1` — verbose altimeter debug output.
+3. Confirm the transducer is **clicking**.
+4. Confirm the debug stream shows `altimeter_232_measure, received '$SDDPT…'`
+   and `altimeter_232_measure() RX valid message '$SDDPT…'` lines (the board
+   reports depth over RS-232 as the `$SDDPT` NMEA sentence).
+5. `put c_alt_time -1` — power off; wait for
+   `altimeter_232_power_off(), power removed, uart closed` and confirm the
+   clicking stops.
+6. `put u_alt_debug 0` — turn verbose debug back off.
 
 ---
 
@@ -219,5 +307,7 @@ bottom. (For contrast, a Seaglider altimeter pings near 12 kHz.)
 | `u_alt_reduced_usage_mode` | bool | Glider powers altimeter only when needed. Saves energy; may underperform in shallow water. |
 | `u_max_water_depth_lifetime` | yos | How long to use last known `m_water_depth` without a new fix |
 | `u_alt_min_post_inflection_time` | sec | Seconds after inflection before altimeter data is accepted |
+| `f_airmar_altimeter_time_until_good_reading` | sec | `altimeter_232` boot time before a reading is valid (default 4; set 12 for the digital board). `c_alt_time` must exceed this for the board to power down between samples |
+| `u_alt_debug` | bool | Verbose altimeter debug output; the way to functionally test the `altimeter_232` (no `m_altimeter_voltage`) |
 | `u_sound_speed` | m/s | Nominal sound speed used to scale altitude output. Default 1500 m/s. |
 | `u_exp_alt_correction` | m | Fixed offset added to `m_raw_altitude` (experimental model only) |
