@@ -233,3 +233,5 @@ nav:
       - Fin / Digifin: glider-components/slocum/digifin/index.md
 
       - Compass / Attitude Sensor: glider-components/slocum/compass/index.md
+
+      - Thruster: glider-components/slocum/thruster/index.md

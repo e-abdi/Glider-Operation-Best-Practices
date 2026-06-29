@@ -93,4 +93,12 @@ Documentation for Slocum glider hardware components and subsystems.
 
     [:octicons-arrow-right-24: Compass / Attitude Sensor](compass/index.md)
 
+-   :material-fan: **Thruster**
+
+    ---
+
+    The optional 10-Watt tail thruster: assisted yos, drift-at-depth, and lens penetration; the four control modes; the energy penalty; in-air checkout, post-deployment care, and troubleshooting.
+
+    [:octicons-arrow-right-24: Thruster](thruster/index.md)
+
 </div>
