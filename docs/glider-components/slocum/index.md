@@ -101,4 +101,12 @@ Documentation for Slocum glider hardware components and subsystems.
 
     [:octicons-arrow-right-24: Thruster](thruster/index.md)
 
+-   :material-circle-double: **O-Rings**
+
+    ---
+
+    Hull and component seals: G2 single-seal vs G3 double-seal part numbers, approved lubricants and the dry-out problem, inspection and replacement, the sealing-surface scratch debate, and vacuum/leak testing.
+
+    [:octicons-arrow-right-24: O-Rings](o-rings/index.md)
+
 </div>

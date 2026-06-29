@@ -235,3 +235,5 @@ nav:
       - Compass / Attitude Sensor: glider-components/slocum/compass/index.md
 
       - Thruster: glider-components/slocum/thruster/index.md
+
+      - O-Rings: glider-components/slocum/o-rings/index.md
