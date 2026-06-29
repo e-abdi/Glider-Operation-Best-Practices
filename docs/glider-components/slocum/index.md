@@ -85,4 +85,12 @@ Documentation for Slocum glider hardware components and subsystems.
 
     [:octicons-arrow-right-24: Fin / Digifin](digifin/index.md)
 
+-   :material-compass: **Compass / Attitude Sensor**
+
+    ---
+
+    The True North attitude sensor: heading/pitch/roll, magnetic variation, shore calibration with RevolutionTest, the in-situ at-sea cal, the post-cal compass check, and diagnosing heading spirals.
+
+    [:octicons-arrow-right-24: Compass / Attitude Sensor](compass/index.md)
+
 </div>

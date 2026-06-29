@@ -231,3 +231,5 @@ nav:
       - Argos: glider-components/slocum/argos/index.md
 
       - Fin / Digifin: glider-components/slocum/digifin/index.md
+
+      - Compass / Attitude Sensor: glider-components/slocum/compass/index.md
