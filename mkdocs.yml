@@ -166,6 +166,7 @@ nav:
       - piloting/seaglider/index.md
     - Slocum:
       - piloting/slocum/index.md
+      - Mission Files: piloting/slocum/mission-files.md
       - Aborts: piloting/slocum/aborts.md
       - Autoballast: piloting/slocum/autoballast.md
       - Power Saving: piloting/slocum/power-saving.md

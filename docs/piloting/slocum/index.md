@@ -21,6 +21,14 @@ Piloting documentation for the Slocum glider platform.
 
     [:octicons-arrow-right-24: Slocum Piloting Checklist](checklists/slocum-piloting-checklist.md)
 
+-   :material-script-text-outline: **Mission Files**
+
+    ---
+
+    How a Slocum mission file is written: the `.mi` / `.ma` structure, the masterdata hierarchy, the layered-behavior priority model, the standard behaviors, waypoints, every reason the glider comes to the surface, and the `abend` safety net.
+
+    [:octicons-arrow-right-24: Mission Files](mission-files.md)
+
 -   :material-alert-octagon-outline: **Aborts**
 
     ---
