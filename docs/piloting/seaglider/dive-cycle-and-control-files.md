@@ -101,7 +101,11 @@ through a fixed sequence:
    glider is still deeper than `$D_SURF`, it pumps to maximum *first* and
    re-checks — this is the escape path after a `$T_MISSION` timeout.
 2. **GPS1** — first fix; the receiver runs until a position with HDOP < 2.0 is
-   found or `$T_GPS` / `$N_GPS` limits are hit.
+   found or `$T_GPS` / `$N_GPS` limits are hit. (Known quirk on older 1KA
+   gliders: the replacement Garmin 15xH GPS warms up slightly slower than the
+   original 15H and misses the firmware's initial 2-second response window, so
+   every dive logs a benign GPS error — a trailing `1` in the log's `$ERRORS`
+   line — and then fixes normally.)
 3. **Communications** — the glider calls the basestation over Iridium,
    uploads its data/log/capture files, and downloads any control files the
    pilot has staged. Failed sessions retry every `$CALL_WAIT` seconds up to
@@ -256,6 +260,16 @@ deleting files on the compact flash, uploading new bathymaps, and similar
 maintenance. Powerful and unvalidated — see the
 [Extended PicoDOS Reference Manual](https://iop-apl-uw.github.io/basestation3/html/epdos_Reference_Manual.html)
 before using it.
+
+!!! warning "The compact-flash root-directory limit (long missions)"
+    Older Seaglider CF cards allow at most **4096 files in the root
+    directory**. At three files per dive that is roughly **1365 dives** —
+    after which the glider still accepts cmdfiles and keeps diving, but
+    records *no data*, reports CF8 errors, and stops processing
+    `pdoscmds.bat` entirely (so you can no longer fix it remotely). On very
+    long missions, run `usage` via `pdoscmds.bat` from about dive 1000
+    onward and `del` files that are already safely uploaded and verified on
+    the basestation — one file per command, before the limit is reached.
 
 ---
 

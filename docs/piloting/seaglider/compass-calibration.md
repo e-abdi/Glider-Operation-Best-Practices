@@ -140,6 +140,30 @@ autocal on just to watch how the onboard solution tracks the basestation one.
 
 ---
 
+## Quick check with a hand compass
+
+When you just want to know whether the calibration is *suspect* — after
+shipping, battery work, or a doubtful-looking track — a handheld magnetic
+compass gives a five-minute answer, no analysis required:
+
+1. Work outdoors on level ground in a magnetically quiet spot (field or
+   parking lot, away from buildings). Empty your pockets — phones, keys,
+   watches, and jewelry all bias a hand compass.
+2. Use the hand compass to lay out a directional reference on the ground,
+   and align the glider with it (any heading works).
+3. On the console, open the compass hardware menu (`hw/compass`) and select
+   the *display calibrated bearing, pitch & roll* option — the glider streams
+   its heading continuously.
+4. Compare: both the hand compass and the glider report **magnetic** heading,
+   so they should agree directly.
+
+Readings within a few degrees are fine. If they differ by more than about
+**±7°**, first repeat the check somewhere else to rule out local magnetic
+interference — and if the disagreement persists, the glider needs a fresh
+calibration (or deeper investigation) before it flies.
+
+---
+
 ## The classic UW procedures
 
 The MATLAB-era procedures below predate basestation3 (which has replaced the
@@ -154,8 +178,9 @@ sufficient for ~1.2° RMS heading accuracy.
     Find a magnetically quiet spot (a parking lot works) away from large
     metal objects. Mount the pupa in a shop jig on a smooth surface that
     spins freely — no calibrated fixture needed. If not at a surveyed site,
-    record a GPS position and date (the analysis needs the local geomagnetic
-    field, which the script looks up).
+    record a GPS position and date via `hw/gps/selftest` (the analysis needs
+    the local geomagnetic field) — attach the antenna for the fix, then take
+    it back off before spinning.
 
     Start a terminal capture, power the glider, and run
     `hw/compass/whirly` (**not** `whirlraw`). Then, with data streaming:

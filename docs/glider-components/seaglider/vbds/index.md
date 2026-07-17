@@ -36,6 +36,18 @@ decisions are ultimately VBD decisions.
 | **Check valves (×3)** | 1–5 psi valves that fix flow direction and rate within the circuit |
 | **Two linear potentiometers** | Report the reservoir piston position; the two readings can differ by up to a few hundred counts from piston wobble, so their **average** is used |
 
+!!! danger "Boost-pump parameters on older (non-Enhanced) buoyancy engines"
+    Two generations of plumbing exist. **Enhanced Buoyancy** engines (the
+    shallow-water-capable design) have a bypass so the main pump can run
+    without the boost pump, plus a larger boost pump that covers greater
+    depths alone. On engines **without** that upgrade there is no bypass —
+    if the boost pump shuts off while the main pump runs, the main pump has
+    to drag oil through the idle boost stage and the engine can be damaged.
+    On those gliders the vendor service bulletin requires `$T_BOOST,0` (boost
+    always runs with the main pump) and `$D_BOOST` no greater than **5 m**
+    (boost-only operation confined to the near-surface). Know which engine
+    you have before touching either parameter.
+
 ### Positions are A/D counts — and the names are backwards
 
 Like pitch and roll, the VBD position is read on a 0–4095 A/D count scale, with
@@ -149,7 +161,8 @@ capturing everything:
 4. For **boost-only**, first set `$D_BOOST,25` (saved to NVRAM) and re-zero
    the pressure sensor at sea level (`hw/pressure/sealevel`) so the glider
    believes it is deep enough to run the boost pump, then run the same cycle
-   dialog answering **Y** to `D_BOOST`.
+   dialog answering **Y** to `D_BOOST`. Restore the operational `$D_BOOST`
+   afterwards (see the boost-pump parameter warning above).
 
 !!! note "If the cycle refuses to start"
     If the current VBD position sits slightly *above* the default software
