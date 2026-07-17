@@ -185,12 +185,7 @@ nav:
     - Seaglider:
       - glider-components/seaglider/index.md
 
-      - Batteries:
-        - glider-components/seaglider/batteries/index.md
-        - Guides:
-          - Overview: glider-components/seaglider/batteries/guides/overview.md
-        - Checklists:
-          - Battery Handling Checklist: glider-components/seaglider/batteries/checklists/checklist.md
+      - Batteries: glider-components/seaglider/batteries/index.md
 
       - Altimeter:
         - glider-components/seaglider/altimeter/index.md
