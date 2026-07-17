@@ -187,10 +187,7 @@ nav:
 
       - Batteries: glider-components/seaglider/batteries/index.md
 
-      - Altimeter:
-        - glider-components/seaglider/altimeter/index.md
-        - Guides:
-          - Overview: glider-components/seaglider/altimeter/guides/index.md
+      - Altimeter: glider-components/seaglider/altimeter/index.md
 
       - VBD: glider-components/seaglider/vbds/index.md
 
