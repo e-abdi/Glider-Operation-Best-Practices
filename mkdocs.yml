@@ -124,6 +124,7 @@ nav:
       - Pre-deployment & Operations: mission-planning/guides/overview.md
     - Checklists:
       - Mission Planning Checklist: mission-planning/checklists/checklist.md
+      - Seaglider Mission Planning Checklist: mission-planning/checklists/seaglider-mission-planning-checklist.md
 
   - Lab Test:
     - lab-test/index.md
@@ -144,6 +145,7 @@ nav:
     - Checklists:
       - Slocum Deployment Checklist: deployment/checklists/slocum-deployment-checklist.md
       - Slocum Field Kit: deployment/checklists/slocum-field-kit.md
+      - Seaglider Deployment Checklist: deployment/checklists/seaglider-deployment-checklist.md
 
   - Recovery:
     - recovery/index.md
@@ -152,6 +154,7 @@ nav:
     - Checklists:
       - Recovery Checklist: recovery/checklists/checklist.md
       - Post-Recovery Maintenance Checklist: recovery/checklists/post-recovery-maintenance-checklist.md
+      - Seaglider Recovery Checklist: recovery/checklists/seaglider-recovery-checklist.md
 
   - Maintenance:
     - maintenance/index.md
@@ -166,6 +169,8 @@ nav:
       - piloting/seaglider/index.md
       - Dive Cycle & Control Files: piloting/seaglider/dive-cycle-and-control-files.md
       - Trim & Flight Model: piloting/seaglider/trim-and-flight-model.md
+      - Checklists:
+        - Seaglider Piloting Checklist: piloting/seaglider/checklists/seaglider-piloting-checklist.md
     - Slocum:
       - piloting/slocum/index.md
       - Mission Files: piloting/slocum/mission-files.md

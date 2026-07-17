@@ -13,6 +13,14 @@ Piloting documentation for the Seaglider platform.
 
 <div class="grid cards" markdown>
 
+-   :material-clipboard-check-outline: **Seaglider Piloting Checklist**
+
+    ---
+
+    Daily pilot checks — glider status, health parameters, trim, sensors, navigation, and endurance tracking.
+
+    [:octicons-arrow-right-24: Seaglider Piloting Checklist](checklists/seaglider-piloting-checklist.md)
+
 -   :material-sync: **Dive Cycle & Control Files**
 
     ---
