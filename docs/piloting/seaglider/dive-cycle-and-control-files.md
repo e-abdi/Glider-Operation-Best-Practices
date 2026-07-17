@@ -8,8 +8,7 @@ description: How a Seaglider flies its mission and how the pilot steers it — t
 A Seaglider is piloted **indirectly**: the vehicle repeats a *canonical dive*
 — surface, dive, apogee, climb, and back to the surface — entirely on its own,
 and the pilot influences the *next* dive by leaving files on the basestation
-for the glider to collect when it calls in. There is no joystick and, during a
-mission, no live terminal: everything the pilot wants to change is expressed as
+for the glider to collect when it calls in. There is no live terminal: everything the pilot wants to change is expressed as
 a handful of plain-text control files. Understanding the dive cycle and those
 files is the foundation of Seaglider piloting — every other topic (trim,
 flight model, sampling) builds on it.

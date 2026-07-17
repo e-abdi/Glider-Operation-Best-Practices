@@ -5,7 +5,7 @@ description: Seaglider lithium primary battery packs — the 24 V / 10 V and uni
 
 # Batteries
 
-Seaglider batteries are unusual among glider systems in that the main pack is
+Seaglider's main battery pack is
 not just an energy store — it **is the trim mechanism**. The large main
 battery, with a brass weight bolted to its underside, is the mass that the
 mass shifter slides fore/aft for pitch and rotates for roll. That double duty
