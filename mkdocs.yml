@@ -197,10 +197,7 @@ nav:
         - Guides:
           - Overview: glider-components/seaglider/altimeter/guides/index.md
 
-      - VBDs:
-        - glider-components/seaglider/vbds/index.md
-        - Guides:
-          - Overview: glider-components/seaglider/vbds/guides/index.md
+      - VBD: glider-components/seaglider/vbds/index.md
 
     - Slocum:
       - glider-components/slocum/index.md

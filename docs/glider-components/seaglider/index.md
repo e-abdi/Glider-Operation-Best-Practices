@@ -29,12 +29,12 @@ Documentation for Seaglider hardware components and subsystems.
 
     [:octicons-arrow-right-24: Altimeter](altimeter/index.md)
 
- -   :material-pump: **VBD**
+-   :material-pump: **VBD**
 
     ---
 
-    Installation, configuration, altitude settings, and performance verification.
+    The buoyancy engine: reservoir, bladder, boost and main pumps, the Skinner valve, the VBD budget, and lab procedures for air-bleeding and pump cycling.
 
-    [:octicons-arrow-right-24: VBDs](vbds/index.md)
+    [:octicons-arrow-right-24: VBD](vbds/index.md)
 
 </div>
