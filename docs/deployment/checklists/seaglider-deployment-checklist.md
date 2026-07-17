@@ -14,9 +14,9 @@ description: Seaglider deployment checklist — field kit, launch conditions, se
 **Field team:** &emsp;\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_ &emsp; **Pilot:** &emsp;\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_ &emsp; **Date:** &emsp;\_\_\_\_\_\_\_\_\_\_
 
 !!! info "Source"
-    Paraphrased from community Seaglider deployment checklists (Cyprus Subsea
-    and derivatives) and the APL-UW IOP launch guidance. Adapt to your
-    vessel, glider configuration, and local procedures.
+    Paraphrased from community Seaglider deployment checklists and the
+    APL-UW IOP launch guidance. Adapt to your vessel, glider configuration,
+    and local procedures.
 
 ---
 

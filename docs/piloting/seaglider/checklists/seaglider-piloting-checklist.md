@@ -12,8 +12,8 @@ description: Daily Seaglider piloting checklist — status from comm.log and cmd
 **Seaglider ID:** &emsp;\_\_\_\_\_\_\_\_\_\_\_\_\_ &emsp; **Pilot:** &emsp;\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_ &emsp; **Date:** &emsp;\_\_\_\_\_\_\_\_\_\_
 
 !!! info "Source"
-    Paraphrased from community Seaglider piloting checklists (Cyprus Subsea
-    and derivatives), updated for basestation3/vis workflows. See
+    Paraphrased from community Seaglider piloting checklists, updated for
+    basestation3/vis workflows. See
     [Dive Cycle & Control Files](../dive-cycle-and-control-files.md) and
     [Trim & Flight Model](../trim-and-flight-model.md) for the how.
 

@@ -14,8 +14,7 @@ description: Seaglider mission-planning record — objectives, environment (curr
 **Operations manager:** &emsp;\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_ &emsp; **Client:** &emsp;\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_
 
 !!! info "Source"
-    Paraphrased from community Seaglider mission-planning checklists (Cyprus
-    Subsea and derivatives). See the
+    Paraphrased from community Seaglider mission-planning checklists. See the
     [Mission Planning guides](../index.md) for platform-independent planning
     detail.
 

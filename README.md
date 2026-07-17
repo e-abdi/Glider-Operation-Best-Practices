@@ -4,6 +4,8 @@ A community-maintained reference wiki for all aspects of underwater glider opera
 
 The information here is an extract of vendor manuals, community forums, and Slack channel discussions. The aim is to organize that scattered knowledge and present it in a more structured, searchable form. It is not a replacement for the official manufacturer documentation — always defer to the manufacturer's guidance for your specific platform.
 
+**This knowledge base is a work in progress.** So far it contains resources for the **Slocum** and **Seaglider** platforms, but the hope is to expand it to the SeaExplorer, Spray, and other types of glider over time. Contributions for any platform are very welcome — see [CONTRIBUTING.md](CONTRIBUTING.md).
+
 Built with [MkDocs](https://www.mkdocs.org/) and the [Material theme](https://squidfunk.github.io/mkdocs-material/). Hosted at: **https://e-abdi.github.io/Glider-Operation-Best-Practices/**
 
 ---
