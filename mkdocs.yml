@@ -169,6 +169,7 @@ nav:
       - piloting/seaglider/index.md
       - Dive Cycle & Control Files: piloting/seaglider/dive-cycle-and-control-files.md
       - Trim & Flight Model: piloting/seaglider/trim-and-flight-model.md
+      - Compass Calibration: piloting/seaglider/compass-calibration.md
       - Checklists:
         - Seaglider Piloting Checklist: piloting/seaglider/checklists/seaglider-piloting-checklist.md
     - Slocum:

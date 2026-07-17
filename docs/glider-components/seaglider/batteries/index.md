@@ -48,7 +48,8 @@ Plan for the knock-on effects before swapping packs:
   [Trim & Flight Model](../../../piloting/seaglider/trim-and-flight-model.md)).
 - **Compass** — the steel in battery cells carries its own local magnetic
   field, so swapping or even re-seating packs can shift the compass hard-iron
-  calibration. Check the compass after battery work.
+  calibration. Check the compass after battery work — see
+  [Compass Calibration](../../../piloting/seaglider/compass-calibration.md).
 
 ## Capacity monitoring
 

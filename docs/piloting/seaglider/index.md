@@ -37,4 +37,12 @@ Piloting documentation for the Seaglider platform.
 
     [:octicons-arrow-right-24: Trim & Flight Model](trim-and-flight-model.md)
 
+-   :material-compass: **Compass Calibration**
+
+    ---
+
+    Hard vs. soft iron, `tcm2mat.cal`, per-dive and multi-dive calibration in basestation3, onboard autocal, and the shore "whirly" and in-flight procedures.
+
+    [:octicons-arrow-right-24: Compass Calibration](compass-calibration.md)
+
 </div>
