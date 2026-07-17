@@ -164,6 +164,8 @@ nav:
     - piloting/index.md
     - Seaglider:
       - piloting/seaglider/index.md
+      - Dive Cycle & Control Files: piloting/seaglider/dive-cycle-and-control-files.md
+      - Trim & Flight Model: piloting/seaglider/trim-and-flight-model.md
     - Slocum:
       - piloting/slocum/index.md
       - Mission Files: piloting/slocum/mission-files.md
