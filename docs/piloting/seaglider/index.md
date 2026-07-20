@@ -45,4 +45,12 @@ Piloting documentation for the Seaglider platform.
 
     [:octicons-arrow-right-24: Compass Calibration](compass-calibration.md)
 
+-   :material-note-text-outline: **One-Pager**
+
+    ---
+
+    Quick-reference commands and reminders: basestation shortcuts, PicoDOS batch commands, loitering, and baud-rate bumps for file transfers.
+
+    [:octicons-arrow-right-24: One-Pager](one-pager.md)
+
 </div>
