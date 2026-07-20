@@ -127,9 +127,6 @@
    Checklist layout improvements (screen)
    -------------------------------------------------------------------------- */
 .md-typeset .task-list-item {
-  display: flex;
-  align-items: flex-start;
-  gap: 0.5em;
   padding: 0.2em 0;
   border-bottom: 1px solid var(--md-default-fg-color--lightest);
 }
