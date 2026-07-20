@@ -140,12 +140,16 @@ nav:
 
   - Deployment:
     - deployment/index.md
-    - Guides:
-      - Slocum Deployment Procedure: deployment/guides/slocum-deployment-procedure.md
-    - Checklists:
-      - Slocum Deployment Checklist: deployment/checklists/slocum-deployment-checklist.md
-      - Slocum Field Kit: deployment/checklists/slocum-field-kit.md
-      - Seaglider Deployment Checklist: deployment/checklists/seaglider-deployment-checklist.md
+    - Seaglider:
+      - deployment/seaglider/index.md
+      - Checklists:
+        - Seaglider Deployment Checklist: deployment/seaglider/checklists/seaglider-deployment-checklist.md
+    - Slocum:
+      - deployment/slocum/index.md
+      - Deployment Procedure: deployment/slocum/deployment-procedure.md
+      - Checklists:
+        - Slocum Deployment Checklist: deployment/slocum/checklists/slocum-deployment-checklist.md
+        - Slocum Field Kit: deployment/slocum/checklists/slocum-field-kit.md
 
   - Recovery:
     - recovery/index.md

@@ -1,6 +1,6 @@
 ---
 title: Deployment
-description: Vessel coordination, launch procedures, initial dive verification, and handoff to remote pilot.
+description: Vessel coordination, launch procedures, initial dive verification, and handoff to remote pilot, organised by platform.
 ---
 
 # Deployment
@@ -15,32 +15,28 @@ Deployment covers all operations from dock departure to handoff of the glider to
 | Minimum Personnel | 3 (vessel crew + 2 glider operators) |
 | Related Topics | [Mission Planning](../mission-planning/index.md), [Recovery](../recovery/index.md) |
 
-## In This Section
+## Platforms
 
 <div class="grid cards" markdown>
 
--   :material-book-open-outline:{ .lg .middle } **Slocum Deployment Procedure**
+-   ![Seaglider](images/seaglider.png){ .platform-icon }
+
+    **Seaglider**
 
     ---
 
-    Step-by-step deployment guide for vessel operators and external deployment crews.
+    Deployment checklist for the Seaglider platform.
 
-    [:octicons-arrow-right-24: Open Guide](guides/slocum-deployment-procedure.md)
+    [:octicons-arrow-right-24: Seaglider Deployment](seaglider/index.md)
 
--   :material-format-list-checks:{ .lg .middle } **Slocum Deployment Checklist**
+-   ![Slocum](images/slocum.svg){ .platform-icon }
 
-    ---
-
-    Printable pre-deployment and at-sea checklist for Slocum gliders.
-
-    [:octicons-arrow-right-24: Open Checklist](checklists/slocum-deployment-checklist.md)
-
--   :material-bag-checked:{ .lg .middle } **Slocum Field Kit**
+    **Slocum**
 
     ---
 
-    Packing list for field deployments — tools, spares, comms, and consumables.
+    Deployment procedure, checklist, and field kit for the Slocum glider platform.
 
-    [:octicons-arrow-right-24: Open Checklist](checklists/slocum-field-kit.md)
+    [:octicons-arrow-right-24: Slocum Deployment](slocum/index.md)
 
 </div>
