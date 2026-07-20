@@ -29,29 +29,16 @@ and the basestation's automated Flight Model System (FMS).
 ## Ballasting before the mission: estimating volmax in a tank
 
 Before a sea trial, the glider needs lead trimmed so that its maximum volume
-(`volmax`) gives the right thrust in the density of the operating area. IOP's
-tank procedure:
+(`volmax`) gives the right thrust in the density of the operating area. The
+full tank procedure — weighing in air and water, computing `volmax` at
+several VBD positions, and converting it into a lead adjustment — now lives
+on its own page: see
+[Seaglider Ballasting Procedure](../../ballasting/seaglider/ballasting-procedure.md).
 
-1. Weigh the glider in air to get its mass **M**.
-2. Soak it **overnight**, fully submerged, in a freshwater tank.
-3. Compute the tank water density **ρ<sub>tank</sub>** from temperature (and
-   salinity if a saltwater tank).
-4. With an accurate scale, measure the glider's weight in water **W<sub>i</sub>**
-   at an intermediate VBD position **VBD<sub>i</sub>** (e.g. 2000 A/D counts).
-5. Compute volmax:
-
-    ```
-    volmax = (M − Wi) / ρtank + ($VBD_MIN − VBDi) × VBD_CNV
-    ```
-
-    where `VBD_CNV = −0.2453 cc/AD count`, `$VBD_MIN` (~400 counts) is bladder
-    **full** and `$VBD_MAX` (~3960 counts) is bladder **empty** — note the
-    counter-intuitive naming: *smaller counts mean more volume*.
-
-6. Repeat at several VBD positions (IOP uses 2000, 2250, 2500, 2750, 3000
-   counts) and average.
-7. Compute the target mass for the desired thrust and target density with the
-   **Tools → Ballast worksheet** in vis.
+The one constant from that procedure worth carrying over here, since the
+rest of this page leans on it repeatedly: `VBD_CNV = −0.2453 cc/AD count`,
+with `$VBD_MIN` (~400 counts) as bladder **full** and `$VBD_MAX` (~3960
+counts) as bladder **empty** — smaller counts mean *more* volume, not less.
 
 !!! note "It's only a rough number"
     The tank estimate is good to perhaps **±100 cc**. The real value is

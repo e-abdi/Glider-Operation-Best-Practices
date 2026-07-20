@@ -133,10 +133,16 @@ nav:
 
   - Ballasting:
     - ballasting/index.md
-    - Guides:
-      - Overview: ballasting/guides/overview.md
-    - Checklists:
-      - Ballasting Checklist: ballasting/checklists/checklist.md
+    - Seaglider:
+      - ballasting/seaglider/index.md
+      - Ballasting Procedure: ballasting/seaglider/ballasting-procedure.md
+      - Checklists:
+        - Seaglider Ballasting Checklist: ballasting/seaglider/checklists/seaglider-ballasting-checklist.md
+    - Slocum:
+      - ballasting/slocum/index.md
+      - Ballasting Procedure: ballasting/slocum/ballasting-procedure.md
+      - Checklists:
+        - Slocum Ballasting Checklist: ballasting/slocum/checklists/slocum-ballasting-checklist.md
 
   - Deployment:
     - deployment/index.md
