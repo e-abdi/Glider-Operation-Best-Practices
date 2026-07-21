@@ -10,6 +10,11 @@ description: Daily Slocum pilot log — the values and checks a pilot records ea
 A daily pilot log. Work down the list each piloting day, recording the value from
 the indicated source and flagging anything outside its normal range.
 
+!!! info "Source"
+    The core daily-log format below is this site's own; the Environment
+    section and first-piloting-day/weekly items are paraphrased from a
+    NorGliders / University of Bergen (UiB) piloting checklist.
+
 ---
 
 **Pilot:** &emsp;\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_ &emsp; **Glider S/N:** &emsp;\_\_\_\_\_\_\_\_\_\_\_\_\_ &emsp; **Date (UTC):** &emsp;\_\_\_\_\_\_\_\_\_\_\_\_\_
@@ -17,6 +22,14 @@ the indicated source and flagging anything outside its normal range.
 ---
 
 !!! tip "First piloting day of a deployment"
+    - [ ] Deployment files were prepared and reviewed before launch: `sg_calib_constants.m`-equivalent config, `cmdfile`, `targets`, `.pagers`, and the science file
+    - [ ] Pre-deployment self-test reviewed (`.cap`/`.eng`/`.log` files against pass/fail guidelines)
+    - [ ] Pre-launch check confirmed — glider calling in and responding to `$QUIT`
+    - [ ] First few dives run one at a time (`$QUIT` between each) while trimming `$C_VBD`, `$C_PITCH`, `$PITCH_GAIN`, `$C_ROLL_DIVE`, `$C_ROLL_CLIMB`
+    - [ ] Compass calibration scheduled — data is unreliable until it's done
+    - [ ] Safety parameters revisited a few days in, once the glider is behaving well (`$N_NOCOMMS`, `$NOCOMM_ACTION`, `$CAPUPLOAD`, `$GO`)
+    - [ ] `cmdfile` trimmed down to the parameters that actually need to be sent each dive
+
     Confirm **Science** and **Navigation** against the campaign plan, and create a
     new *important* log entry with a fresh campaign summary for reference.
 
@@ -42,6 +55,14 @@ the indicated source and flagging anything outside its normal range.
 
 !!! note
     If the waypoint is **not** part of the campaign plan, update the campaign plan.
+
+---
+
+## Environment
+
+- [ ] **Ice status** &emsp;<small>*is there ice nearby? Should `$USE_ICE,1` be set? Are ice charts (`ice.ice_chart`) updating regularly?*</small>
+- [ ] **Weather forecast** &emsp;<small>*wind direction/speed — pay particular attention if operating near the ice edge, which can move fast*</small>
+- [ ] **Bathymetry / water depth** &emsp;<small>*about to change? Are strong currents or eddies expected ahead?*</small>
 
 ---
 
@@ -76,6 +97,7 @@ the indicated source and flagging anything outside its normal range.
 - [ ] **Script** &emsp;<small>*copy from terminal*</small>
 - [ ] **Current correction** &emsp;<small>*on or off, from dialog*</small>
 - [ ] **Lower power mode** &emsp;<small>*off, or the value in use, from glider dialog*</small>
+- [ ] **File hygiene** &emsp;<small>*any unnecessary files loaded on the glider (old `.bat`, `targets`, `science`)? Move them to `.last` if so*</small>
 
 !!! note
     If the script needs to change or is having difficulty, add a comment to
@@ -128,6 +150,13 @@ the indicated source and flagging anything outside its normal range.
 
 - [ ] **Weather** &emsp;<small>*wave and wind speed and direction (e.g. from Windy)*</small>
 - [ ] **Obstacles** &emsp;<small>*ice edge, shallows, shelf edge, etc. — piloting concerns that might lead to a change of mission or campaign*</small>
+
+---
+
+!!! tip "Weekly"
+    - [ ] Review battery endurance and whether the glider is running energy-efficient (`$MAX_BUOY`, `$SM_CC` — see [Power Saving](../power-saving.md))
+    - [ ] Keep your team's glider status record up to date with changes, aborts, and recoveries
+    - [ ] Register deployment start/end with your organization's tracking systems and any relevant data registries (e.g. [OceanOPS](https://www.ocean-ops.org/))
 
 ---
 
