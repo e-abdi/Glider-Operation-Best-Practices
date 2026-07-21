@@ -13,7 +13,7 @@ Underwater connectors are a frequent point of failure on gliders. Most ground fa
     | Golden rule | Grease **before every mating** |
     | Tighten by | Hand only — never tools |
     | Disconnect by | Pulling straight out, never at an angle |
-    | Related topics | [Maintenance](../../maintenance/index.md), [Deployment](../../deployment/index.md) |
+    | Related topics | [Maintenance](../../../maintenance/index.md), [Deployment](../../../deployment/index.md) |
 
 ## What This Section Covers
 

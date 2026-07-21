@@ -258,5 +258,5 @@ A practical pain point worth its own note — closing a G3 against two O-rings:
   G3s can be hard to assemble.
 - [Pumps](../pumps/index.md) — Bellofram/oil-bladder rubber care and storage
   (related lubricant rules).
-- [Maintenance overview](../../../maintenance/guides/overview.md) — where O-ring
+- [Maintenance Schedule](../../../maintenance/slocum/maintenance-schedule.md) — where O-ring
   inspection fits in the service schedule.

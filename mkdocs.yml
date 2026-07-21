@@ -198,6 +198,12 @@ nav:
 
     - Shared:
       - glider-components/shared/index.md
+      - Connectors:
+        - glider-components/shared/connectors/index.md
+        - Guides:
+          - SubConn Installation Instructions: glider-components/shared/connectors/guides/subconn-installation-instructions.md
+          - IE55 Installation Instructions: glider-components/shared/connectors/guides/ie55-installation-instructions.md
+        - Pinouts: glider-components/shared/connectors/pinouts.md
 
     - Seaglider:
       - glider-components/seaglider/index.md
