@@ -176,10 +176,12 @@ nav:
 
   - Maintenance:
     - maintenance/index.md
-    - Guides:
-      - Overview: maintenance/guides/overview.md
-    - Checklists:
-      - Maintenance Checklist: maintenance/checklists/checklist.md
+    - Seaglider:
+      - maintenance/seaglider/index.md
+      - Maintenance Schedule: maintenance/seaglider/maintenance-schedule.md
+    - Slocum:
+      - maintenance/slocum/index.md
+      - Maintenance Schedule: maintenance/slocum/maintenance-schedule.md
 
   - Piloting:
     - piloting/index.md
