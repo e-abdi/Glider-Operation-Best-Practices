@@ -151,6 +151,7 @@ nav:
     - deployment/index.md
     - Seaglider:
       - deployment/seaglider/index.md
+      - Deployment Procedure: deployment/seaglider/deployment-procedure.md
       - Checklists:
         - Seaglider Deployment Checklist: deployment/seaglider/checklists/seaglider-deployment-checklist.md
     - Slocum:
@@ -164,6 +165,7 @@ nav:
     - recovery/index.md
     - Seaglider:
       - recovery/seaglider/index.md
+      - Recovery Procedure: recovery/seaglider/recovery-procedure.md
       - Checklists:
         - Seaglider Recovery Checklist: recovery/seaglider/checklists/seaglider-recovery-checklist.md
     - Slocum:
