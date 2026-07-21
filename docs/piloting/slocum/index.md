@@ -61,4 +61,12 @@ Piloting documentation for the Slocum glider platform.
 
     [:octicons-arrow-right-24: Passive Acoustic Monitoring](passive-acoustic-monitoring.md)
 
+-   :material-file-pdf-box: **G3 Piloting Primer**
+
+    ---
+
+    A screen-by-screen SFMC walkthrough — dashboard, deployment details, the glider terminal, and waypoint creation.
+
+    [:octicons-arrow-right-24: G3 Piloting Primer](piloting-primer.md)
+
 </div>

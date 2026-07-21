@@ -36,4 +36,12 @@ Mission planning translates science objectives and operational constraints into 
 
     [:octicons-arrow-right-24: Open Checklist](checklists/checklist.md)
 
+-   :material-earth: **Regional Guides**
+
+    ---
+
+    Published best-practice guidance for operating gliders in specific regions.
+
+    [:octicons-arrow-right-24: View Regional Guides](regional-guides/index.md)
+
 </div>

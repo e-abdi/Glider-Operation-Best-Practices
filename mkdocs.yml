@@ -125,6 +125,9 @@ nav:
     - Checklists:
       - Mission Planning Checklist: mission-planning/checklists/checklist.md
       - Seaglider Mission Planning Checklist: mission-planning/checklists/seaglider-mission-planning-checklist.md
+    - Regional Guides:
+      - mission-planning/regional-guides/index.md
+      - Atlantic Canada: mission-planning/regional-guides/atlantic-canada.md
 
   - Lab Test:
     - lab-test/index.md
@@ -190,6 +193,7 @@ nav:
       - Autoballast: piloting/slocum/autoballast.md
       - Power Saving: piloting/slocum/power-saving.md
       - Passive Acoustic Monitoring: piloting/slocum/passive-acoustic-monitoring.md
+      - G3 Piloting Primer: piloting/slocum/piloting-primer.md
       - Checklists:
         - Slocum Piloting Checklist: piloting/slocum/checklists/slocum-piloting-checklist.md
 
