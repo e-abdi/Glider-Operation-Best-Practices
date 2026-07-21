@@ -1,6 +1,6 @@
 ---
 title: Slocum Deployment Checklist
-description: Slocum glider deployment checklist covering pre-deployment, on-deck operations, in-water checks, and first-day monitoring.
+description: Slocum glider deployment checklist covering startup, systems checks, pre-launch prep, launch, and in-water test dives.
 ---
 
 # Slocum Deployment Checklist
@@ -13,132 +13,96 @@ description: Slocum glider deployment checklist covering pre-deployment, on-deck
 
 **Engineer:** &emsp;\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_ &emsp; **Date:** &emsp;\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_
 
----
-
-## 1. Pre-Deployment
-
-- [ ] Archive deployment on SFMC
-- [ ] Cache files
-- [ ] Test remote comms &emsp;<small>*Cell / Iridium Go / Iridium handset*</small>
-- [ ] Remote team confirms local testing done
-- [ ] Remote team relays glider turnaround plan and ETA
-- [ ] IMS movements confirmed
-
-**MicroRider** *(if fitted)*
-
-- [ ] MR — Check probe capacitance/resistance with multimeter/Gigaohm-meter
-- [ ] MR — Check `SETUP.CFG` (serial numbers, cal constants, file names: `D_*.P`)
-- [ ] MR — Bench test with **test probes**; check P-file creation and logfile for errors &emsp;<small>`odas5ir -f setup.cfg -c all`</small>
-- [ ] MR — Check/set date and time
-- [ ] MR — *(optional)* Bench test with **mission probes**; check P-file and logfile; reinstall test probes after
-- [ ] MR — Check probe ports (greased O-ring, ferrule OK)
-- [ ] MR — Check all screws, bolts, and connectors are firm/tight
-
-**Final pre-deployment**
-
-- [ ] *(optional)* Run a simulation; check all files and data
-- [ ] Download all relevant glider/sensor files and build the final Expedition folder; send to office/SharePoint &emsp;<small>`*.ma, *.mi`, config files (science and flight), MicroRider `SETUP.CFG`</small>
+!!! info "Source"
+    Paraphrased from a NorGliders / University of Bergen (UiB) field-pilot
+    deployment logsheet (*SL05 — G3 Deployment Field Pilot*). Expected sensor
+    ranges are UiB operating norms — confirm against your own glider's
+    baseline.
 
 ---
 
-## 2. On Deck
+## 1. Startup
 
-- [ ] Note deployment time &emsp;<small>*Ensure remote team has unplugged Freewave*</small>
-- [ ] Stop `initial.mi` &emsp;<small>`Ctrl-C` × 2</small>
-- [ ] Increase time in GliderDOS &emsp;<small>`put u_max_time_in_gliderdos 3600`</small>
-- [ ] *(optional)* Pull engineering config files &emsp;<small>`zs config/autoexec.mi` &ensp; `zs config/sbdlist.dat`</small>
-- [ ] *(optional)* Pull science config files &emsp;<small>`szs /config/proglets.dat` &ensp; `szs config/tbdlist.dat`</small>
-- [ ] Confirm vanilla mission and `.ma` files are present &emsp;<small>*(optionally type `send off` or `send on`)*</small>
-- [ ] Send new `goto` and any new files &emsp;<small>`dockzr *.*`</small>
+- [ ] Contacts clean and greased; go plug inserted
+- [ ] `^c` &emsp;<small>*gain control of the glider*</small>
+- [ ] `callback 30`
+- [ ] `lab_mode on`
+- [ ] `report clearall`
+- [ ] `where` &emsp;<small>*record `m_veh_temp`, `m_vacuum`, `m_battery`*</small>
+- [ ] Confirm BMS currents are non-zero &emsp;<small>*`m_bms_aft_current`, `m_bms_ebay_current`, `m_bms_pitch_current`*</small>
+- [ ] `boot app` → `consci` → `boot app` → `quit` &emsp;<small>*cycle both processors up*</small>
+- [ ] `simul?` and `dir config` — confirm `simul.sim` is **not** present in `\config`
 
-**MicroRider** *(if fitted)*
+## 2. Motor Check
 
-- [ ] MR — Install mission probes &emsp;<small>*confirm probes installed by remote team*</small>
-- [ ] MR — On-deck calibration; fill ChanStats checklist; check for broken probes &emsp;<small>`u4stalk`, then `odas5ir -f setup.cfg -c all`</small>
+- [ ] `use` &emsp;<small>*review device list*</small>
+- [ ] `wiggle on`, `report ++ m_battpos m_fin m_de_oil_vol` — leave 5 min
+- [ ] `use` again — record any oddities, warnings, or errors, and confirm motors moved their full ranges &emsp;<small>`m_de_oil_vol` −415 : 415 cc · `m_battpos` −0.9 : 0.9 in · `m_fin` −0.45 : 0.45 rad</small>
+- [ ] `wiggle off`
+- [ ] `ballast`
+- [ ] `report clearall`
+- [ ] `lab_mode off`
 
-**Status checks**
+## 3. GPS Check
 
-- [ ] Run `status.mi` &emsp;<small>`run status.mi`</small>
-- [ ] Confirm `status.mi` completes normally — no aborts, or any aborts understood and resolved
-- [ ] Confirm GPS location; send SBD/TBD; check age of GPS fix
-- [ ] Plot engineering and science data &emsp;<small>`send *.sbd *.tbd`</small>
-- [ ] Confirm engineering data in DataVisualizer
-- [ ] Confirm science data in DataVisualizer &emsp;<small>*battery · vacuum · time · GPS position · leak detectors*</small>
-- [ ] Confirm devices show no unusually high number of warnings or oddities
-- [ ] Communicate to remote team: glider is OK / not OK to deploy &emsp;<small>*From this point the **pilot team** is responsible for control of the glider*</small>
+- [ ] `put c_gps_on 3` — confirm a fix (`where`, or the `V`→`A` flag in the data stream; a fresh almanac can take several minutes)
+- [ ] `put c_gps_on 1`
+- [ ] `sync_time`
 
----
+## 4. Mission Settings & Onboard Status
 
-## 3. In Water
+- [ ] Test-dive mission file staged (e.g. `yo14.ma`: `num_half_cycles_to_do` 2 · `d_target_depth` 10–20 m · `d_bpump_value` 500–600 cc · `d_target_altitude` > 15 m · pitch mode 3, `±0.4538`)
+- [ ] `surfac21.ma` `when_secs` set (e.g. 1200 s)
+- [ ] `goto_l10.ma` staged — initial waypoint lat/lon recorded and given to the skipper
+- [ ] `run status.mi` completes **normally** &emsp;<small>*a `surface_2` timeout on `m_raw_altitude` while on the bench is expected and OK*</small>
+- [ ] GPS fix acquired; Iridium connects after the mission
+- [ ] `callback 30` → `use` → `send *.*` → data processes successfully
+- [ ] `callback 0 0` — confirm **modem** connection in SFMC
+- [ ] `callback 1 0` — confirm **RUDICS** connection in SFMC
+- [ ] `where` — `m_vacuum` **> 9 in Hg**; `get m_de_oil_vol` **> 415 cc**; `get m_battpos` **> 0.9 in**
+- [ ] Air bladder filled and pitch battery all the way forward
 
-- [ ] Remote team confirms glider is deployed and is on/off buoy
-- [ ] Run `status.mi` &emsp;<small>`run status.mi`</small>
-- [ ] Confirm surface dialog engineering data &emsp;<small>*battery · vacuum · time · GPS position · leak detectors*</small>
-- [ ] Confirm no aborts
-- [ ] Zero ocean pressure &emsp;<small>`zero_ocean_pressure`</small>
+!!! danger "Do not deploy until Iridium connections are verified."
 
-**MicroRider** *(if fitted)*
+**MicroRider** *(if fitted)* — mounted securely, MCIL-8-FS cable connected,
+sensors installed with serial numbers/orientation recorded, bench-calibrated
+(`odas5ir -c all`) and 60 s bench-tested with a review of the resulting
+statistics.
 
-- [ ] MR — Surface calibration; fill ChanStats checklist; check for broken probes &emsp;<small>`u4stalk` using `ctrl-F`, then `odas5ir -f setup.cfg -c all`</small>
-- [ ] MR — Send calibration data to Rockland support &emsp;<small>*copy calibration text from terminal*</small>
+## 5. Prepare for Launch
 
-**Initial dive sequence**
+- [ ] Wings attached securely, Phillips screw fastened
+- [ ] CTD, DO, and other sensor covers removed
+- [ ] Floats attached and line organized *(if used)*
+- [ ] Trolley front ring and securing strap removed
+- [ ] OK received from the skipper
+- [ ] Release system prepared
 
-- [ ] Run `ini0.mi` (on buoy preferred) &emsp;<small>`run ini0.mi`</small>
-- [ ] Send MDB &emsp;<small>`send *.mbd -num=1`</small>
-- [ ] Send all SBD and TBD (should be `ini0` and `status` only) &emsp;<small>`send *.sbd *.tbd`</small>
-- [ ] Exit reset and catch glider on connection &emsp;<small>`exit reset`</small>
-- [ ] Confirm ballast — dive/climb profile should be a clean V-shape &emsp;<small>*if not, use drive calculator*</small>
-- [ ] If not V: inform field crew of weights to add/remove and repeat `ini0`
-- [ ] If ballast OK: notify crew to remove buoy
-- [ ] Once glider is free: sequence mission &emsp;<small>`Sequence mission.mi(5)` *(or expedition-specific mission name)*</small>
-- [ ] Confirm first vanilla mission dive depth is 30 m
-- [ ] Confirm script is running &emsp;<small>`SFMC-g3s-ma-first-num=3.xml`</small>
+!!! danger "Before the glider goes in the water, confirm all three:"
+    - [ ] **Not** in `lab_mode` (`lab_mode off`)
+    - [ ] **Not** in simulation — `simul.sim?` gets no reply
+    - [ ] Set to `boot app` (`boot app`) — keep sending a keystroke to the glider to stop it from booting a mission early
 
-**MicroRider** *(if fitted — after first dive)*
+- [ ] `callback 10`, then **launch the glider**
 
-- [ ] MR — Surface calibration after first dive; fill ChanStats checklist
-- [ ] MR — Check MicroRider memory: confirm increasing data files and growing log size &emsp;<small>`dir \DATA\D*.P` &ensp; `dir \DATA\logfile.txt`</small>
-- [ ] MR — Mid-profile channel analysis from `.tbd` data; fill ChanStats checklist (mid-profile) &emsp;<small>*reference: TN_048, ChanStat*</small>
-- [ ] MR — Send data to Rockland support &emsp;<small>*calibration text + `.tbd`/`.sbd` converted data (`.dat` ASCII) + logfile*</small>
+## 6. In Water
 
-**Depth ramp-up**
+- [ ] Glider sitting correctly in the water
+- [ ] `where` — record leak-detect voltages &emsp;<small>`m_leakdetect_voltage_forward` > 2.4 · `m_digifin_leakdetect_reading` > 1018 · `m_vacuum` > 9</small>
+- [ ] `run status.mi` — GPS fix acquired, mission completes normally
+- [ ] `callback 0 0` — confirm modem connection; `callback 0 1` — confirm RUDICS connection
 
-- [ ] Adjust dive depth and altitude incrementally &emsp;<small>*typical sequence: 100 → 300 → 600 → 990 m (edit `yo35.ma`)*</small>
-- [ ] Adjust autoballast values as appropriate
-- [ ] *(optional)* Toggle current correction in surface dialog &emsp;<small>`!put u_use_current_correction 0`</small>
-- [ ] Notify field crew that glider is on mission and diving to full depth
+## 7. Science Check
 
----
+- [ ] `loadmission sci_on.mi` — all sensors reporting reasonable values, no oddities
+- [ ] `loadmission sci_off.mi`
 
-## 4. Remainder of Day 1
+## 8. Test Dives
 
-- [ ] Email BODC with deployment time and location
-- [ ] *(optional)* Increase number of half yos
-- [ ] Increase surface interval / no-comms count once navigation, data retrieval, and nominal operation are confirmed
-- [ ] Adjust engineering data density as desired &emsp;<small>edit `sbdlist.dat` (restart mission)</small>
-- [ ] Adjust science data density as desired &emsp;<small>edit `tbdlist.dat` (send to science)</small>
-- [ ] Compare actual results against campaign plan; verify with lead pilot that all requirements are being met
-- [ ] Subscribe to abort SMS/calls &emsp;<small>*GliderLab*</small>
-- [ ] Set SFMC email subscriptions &emsp;<small>*glider page → Options → Configure Glider Event Subscriptions*</small>
-- [ ] Adjust altimeter minimum depth &emsp;<small>e.g. `!put u_alt_min_depth 40` to enable altimeter at 40 m and deeper</small>
-
-**MicroRider** *(if fitted)*
-
-- [ ] MR — Repeat MicroRider channel checks periodically (2–3× per deployment day)
-
----
-
-## 5. Day 2 and Beyond
-
-- [ ] Complete daily pilot log and post to C2 &emsp;<small>`SLC-CL-PLT05 Pilot log checklist.xlsx`</small>
-- [ ] Confirm deployment-specific criteria are being satisfied: energy budget · science requirements · navigation requirements
-
-**MicroRider** *(if fitted)*
-
-- [ ] MR — Repeat probe capacitance check (MR1) once per week
-- [ ] MR — Repeat TBD data channel analysis (MR2) once per day
-- [ ] MR — Repeat mid-profile channel stats (MR3) when in doubt about probe health
+- [ ] **Test dive 1** — depth 10–15 m, ~10 min (`when_secs` ≈ 1200s) — `run <mission>.mi` completes normally; record surfacing behaviour, max depth, dive/climb pitch angle, roll, science data
+- [ ] Floats removed, if fitted
+- [ ] **Test dive 2** — depth 30–50 m, ~20 min (`when_secs` ≈ 1800s) — edit `yo14.ma` / `surfac21.ma` for the deeper dive before running
+- [ ] Depth increased incrementally on subsequent dives once the glider is flying cleanly
 
 ---
 
@@ -146,11 +110,13 @@ description: Slocum glider deployment checklist covering pre-deployment, on-deck
 
 | Phase | Completed by | Time (UTC) | Notes |
 |---|---|---|---|
-| Pre-Deployment | | | |
-| On Deck | | | |
-| In Water — first dive | | | |
-| Depth ramp-up complete | | | |
+| Startup & systems check | | | |
+| Prepared for launch | | | |
+| In water — first dive | | | |
+| Test dive 2 complete | | | |
 
 ---
 
-*Slocum Deployment Checklist — v1.2 · Adapted from NOC/Voice of the Ocean Slocum deployment checklist*
+**Notes:**
+
+\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_
