@@ -1,39 +1,35 @@
 ---
 title: Recovery
-description: Surface approach, retrieval, and immediate post-recovery inspection.
+description: Surface approach, retrieval, and post-recovery inspection, organised by platform.
 ---
 
 # Recovery
 
-Remote piloting commands, surface approach, retrieval, and immediate post-recovery inspection and
-maintenance.
+Remote piloting commands, surface approach, retrieval, and immediate
+post-recovery inspection and maintenance.
 
-## In This Section
+## Platforms
 
 <div class="grid cards" markdown>
 
--   :material-book-open-variant: **Slocum Recovery Remote Pilot Procedure**
+-   ![Seaglider](images/seaglider.png){ .platform-icon }
+
+    **Seaglider**
 
     ---
 
-    Recovery procedures and guidance.
+    Recovery checklist for the Seaglider platform.
 
-    [:octicons-arrow-right-24: Slocum Recovery Remote Pilot Procedure](guides/slocum-recovery-remote-pilot-procedure.md)
+    [:octicons-arrow-right-24: Seaglider Recovery](seaglider/index.md)
 
--   :material-clipboard-check-outline: **Recovery Checklist**
+-   ![Slocum](images/slocum.svg){ .platform-icon }
 
-    ---
-
-    Printable checklist for the recovery operation.
-
-    [:octicons-arrow-right-24: Recovery Checklist](checklists/checklist.md)
-
--   :material-clipboard-list-outline: **Post-Recovery Maintenance Checklist**
+    **Slocum**
 
     ---
 
-    Rinse, inspection, anode and O-ring care, desiccant, and storage prep.
+    Field and remote-pilot recovery procedures, and checklists, for the Slocum glider platform.
 
-    [:octicons-arrow-right-24: Post-Recovery Maintenance Checklist](checklists/post-recovery-maintenance-checklist.md)
+    [:octicons-arrow-right-24: Slocum Recovery](slocum/index.md)
 
 </div>

@@ -162,12 +162,17 @@ nav:
 
   - Recovery:
     - recovery/index.md
-    - Guides:
-      - Slocum Recovery Remote Pilot Procedure: recovery/guides/slocum-recovery-remote-pilot-procedure.md
-    - Checklists:
-      - Recovery Checklist: recovery/checklists/checklist.md
-      - Post-Recovery Maintenance Checklist: recovery/checklists/post-recovery-maintenance-checklist.md
-      - Seaglider Recovery Checklist: recovery/checklists/seaglider-recovery-checklist.md
+    - Seaglider:
+      - recovery/seaglider/index.md
+      - Checklists:
+        - Seaglider Recovery Checklist: recovery/seaglider/checklists/seaglider-recovery-checklist.md
+    - Slocum:
+      - recovery/slocum/index.md
+      - Field Recovery Procedure: recovery/slocum/field-recovery-procedure.md
+      - Remote Pilot Recovery Procedure: recovery/slocum/remote-pilot-recovery-procedure.md
+      - Checklists:
+        - Slocum Recovery Checklist: recovery/slocum/checklists/slocum-recovery-checklist.md
+        - Post-Recovery Maintenance Checklist: recovery/slocum/checklists/post-recovery-maintenance-checklist.md
 
   - Maintenance:
     - maintenance/index.md
