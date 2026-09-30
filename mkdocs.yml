@@ -229,6 +229,12 @@ nav:
 
       - Pressure Sensor: glider-components/seaglider/pressure-sensor/index.md
 
+      - Electronics: glider-components/seaglider/electronics/index.md
+
+      - Sensor Configuration: glider-components/seaglider/sensors/index.md
+
+      - Comms, GPS & Basestation: glider-components/seaglider/comms/index.md
+
     - Slocum:
       - glider-components/slocum/index.md
 

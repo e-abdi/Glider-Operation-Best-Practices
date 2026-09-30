@@ -1,6 +1,6 @@
 ---
 title: Compass Calibration
-description: The Seaglider compass and how to calibrate it — hard vs. soft iron, tcm2mat.cal, $COMPASS_USE and raw magnetometer data, per-dive and multi-dive calibration in basestation3, onboard autocal for under-ice missions, judging a calibration result, and the classic shore "whirly" and in-flight calibration procedures.
+description: The Seaglider compass and how to calibrate it — hard vs. soft iron, tcm2mat.cal, $COMPASS_USE and raw magnetometer data, per-dive and multi-dive calibration in basestation3, onboard autocal for under-ice missions, judging a calibration result, loading and checking the calibration on the glider, compass models, swaps and spare/auxiliary compasses, compass failures in flight, and the classic shore "whirly" and in-flight calibration procedures.
 ---
 
 # Compass Calibration
@@ -18,8 +18,10 @@ mission.**
     Paraphrased from the APL-UW IOP *SGX Documentation* (§4.4.3), IOP webinar
     3 (*Basestation3 CLI and customization + glider compass calibration*), and
     the UW *New compass calibration procedures for Seagliders* note (Bennett,
-    2012 — the "whirly" and in-flight procedures). Defer to APL-UW IOP for
-    current tooling.
+    2012 — the "whirly" and in-flight procedures), and 2016–2023
+    correspondence between Seaglider operators, APL-UW IOP and the
+    manufacturer (compass swaps, failures at sea, calibration files on
+    older firmware). Defer to APL-UW IOP for current tooling.
 
 ---
 
@@ -163,6 +165,105 @@ interference — and if the disagreement persists, the glider needs a fresh
 calibration (or deeper investigation) before it flies.
 
 ---
+
+## On the glider: loading and checking the calibration
+
+On older (Rev B, 66.x) firmware the calibration lives in a file on the card
+named **`tcm2mat.NNN`** (NNN = glider number), not in `tcm2mat.cal`. The
+file's tag line names the data it came from, the compass serial number and
+the local field strength. It is loaded like any other card file:
+
+- Upload with XMODEM (`xr`) and run `strip1a`. If XMODEM keeps failing, use
+  YMODEM (`yr`).
+- **Rename the old file first** (e.g. to `tcm2mat.old`) and check the new
+  one arrived before you delete anything. One failed transfer after a rename
+  left the glider with no calibration at all.
+- **Check what the glider actually loaded** in the compass hardware menu
+  (`hw/compass`, the coefficients option). It prints the tag line, the
+  pitch/roll terms, the hard-iron **P, Q, R** and the soft-iron matrix. A
+  hard-iron of exactly 0 0 0 and an identity matrix mean no calibration is
+  in use.
+- **Ask the glider for the file it's using**, rather than trusting a copy in
+  the records. The last file on disk has turned out to be older than the one
+  the factory had loaded.
+
+Reading the old file format: the long line holds the 3×3 soft-iron matrix
+(nine values) followed by the hard-iron P, Q, R (three values). The larger
+P, Q, R are, the further the raw field was offset. The first rows are
+pitch and roll corrections, which are now left at 0/1 because the factory
+accelerometer calibration is good enough.
+
+After a battery change, one team found the new calibration very different
+from the old. APL-UW judged it clean because the soft-iron diagonal was
+closer to 1 than before. **Different is not wrong.** Judge the new
+calibration on its own quality (see [Judging a result](#judging-a-result)).
+Keep `$COMPASS_USE` at 4 or above so the raw data needed to re-check it comes
+back with every dive.
+
+## Compass models and swaps
+
+Seagliders have flown several compass models, notably the **Sparton**
+(SP3003/SP3004) and the **PNI Prime**. The model matters for more than
+wiring:
+
+- **Field-strength units differ.** When the calibration software assumed
+  the wrong model, a Prime calibration failed to converge. The trim sheet
+  listed the wrong model and serial number. The terminal log showed the
+  truth, and forcing the field strength to the Prime's units (about 52
+  rather than about 520 at that site) gave sensible results. Some older
+  calibration tools didn't support the Prime at all. **Read the compass
+  model and serial number from the glider**, not from paperwork.
+- **After fitting a different model**, select it in `param/config/compass`,
+  run the basic compass self-test (the heading should change sensibly as you
+  turn the glider), then calibrate before flying. Some firmware updates also
+  require the compass to be reinstalled.
+- **Mass changes too.** A Sparton with its bracket weighs about 78 g against
+  about 48 g for a Prime. Enter the new mass in the trim sheet.
+- A Sparton on a 3 V carrier is configured as a separate model
+  (`SP3003_3V`), but that only affects power accounting.
+
+### Auxiliary and spare compasses
+
+- The **SciCon auxiliary compass** on manufacturer-built gliders gives
+  **pitch and roll only**, as a backup attitude record. Ignore its heading.
+  It is not used for navigation.
+- A **spare (second) compass** is a separate hardware configuration
+  (`param/config`, *compass2*). To navigate on it, the glider needs a
+  calibration file named **`t2m2mat.NNN`** (note *t2m*, not *tcm*), and
+  `$COMPASS_USE` with bit 11 set (e.g. 2052). Without the file, switching
+  does nothing useful.
+
+## When the compass fails in flight
+
+- **The symptom** is heading, pitch and roll all timing out ("query failed",
+  "compass timeout"), often starting partway through a dive. The last field
+  of the `$ERRORS` line in the log counts sensor timeouts, so a jump there
+  is the flag. The GPS and the rest of the glider keep working.
+- **Nothing can be fixed remotely.** Without heading, the glider can't steer
+  and will drift with the currents. Recover as soon as you can.
+- **Intermittent NaN heading/pitch/roll near the surface only**, and not at
+  depth, has been seen on an old Sparton. It couldn't be reproduced on the
+  bench. It is worth logging the compass temperature against the failures
+  before replacing parts, but replacing an old unit is reasonable.
+- A **status 1** return in the compass self-test, when raw data looks fine,
+  pointed to a failed unit. That model had been recalled, and was replaced.
+
+## Steering problems that aren't the compass
+
+Before blaming the calibration for poor steering, rule out the flight:
+
+- A glider that holds its heading on the climb but makes unexplained turns
+  on the dive was cured by a fresh compass calibration. An apogee density
+  mismatch (wrong `$C_VBD`) was also contributing.
+- **`$HEAD_ERRBAND`** sets how far the heading may wander before the glider
+  rolls to correct it. Widening it from 10° to 20° cuts roll activity (and
+  motor noise, which matters for acoustic payloads).
+- `$ROLL_ADJ_DBAND` and `$ROLL_ADJ_GAIN` don't work well until the glider is
+  fully trimmed. `$T_TURN` is only a cap on the length of a roll move. How
+  often the heading is checked is set by the guidance-and-control interval.
+- A dive that is much slower than the climb (a pitch asymmetry) leaves the
+  downcast more exposed to turbulence. Symmetric dive and climb speeds
+  steer better.
 
 ## The classic UW procedures
 

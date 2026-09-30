@@ -45,4 +45,28 @@ Documentation for Seaglider hardware components and subsystems.
 
     [:octicons-arrow-right-24: Pressure Sensor](pressure-sensor/index.md)
 
+-   :material-chip: **Electronics**
+
+    ---
+
+    Rev B and Rev E main boards, where settings live, board replacements and upgrades, 15 V conversions, bench power, and safe handling.
+
+    [:octicons-arrow-right-24: Electronics](electronics/index.md)
+
+-   :material-tune: **Sensor Configuration**
+
+    ---
+
+    serdev, logdev and SciCon, the .cnf library, basestation handling, and per-sensor notes for CT, GPCTD, optodes, ECO pucks, RBR, PAR and AD2CP.
+
+    [:octicons-arrow-right-24: Sensor Configuration](sensors/index.md)
+
+-   :material-satellite-uplink: **Comms, GPS & Basestation**
+
+    ---
+
+    RUDICS and dial-up paths, antenna and cable faults, mgetty and basestation pitfalls, SMS alerts, the GPS rollover, and backup trackers.
+
+    [:octicons-arrow-right-24: Comms, GPS & Basestation](comms/index.md)
+
 </div>
