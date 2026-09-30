@@ -227,6 +227,8 @@ nav:
 
       - VBD: glider-components/seaglider/vbds/index.md
 
+      - Pressure Sensor: glider-components/seaglider/pressure-sensor/index.md
+
     - Slocum:
       - glider-components/slocum/index.md
 

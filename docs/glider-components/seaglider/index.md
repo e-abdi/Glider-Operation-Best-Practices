@@ -17,7 +17,7 @@ Documentation for Seaglider hardware components and subsystems.
 
     ---
 
-    Charging procedures, storage, safe handling, and capacity tracking.
+    Pack architectures, fuel gauges and voltage cutoffs, battery changes, stretching a low battery, and safe handling.
 
     [:octicons-arrow-right-24: Batteries](batteries/index.md)
 
@@ -36,5 +36,13 @@ Documentation for Seaglider hardware components and subsystems.
     The buoyancy engine: reservoir, bladder, boost and main pumps, the Skinner valve, the VBD budget, and lab procedures for air-bleeding and pump cycling.
 
     [:octicons-arrow-right-24: VBD](vbds/index.md)
+
+-   :material-gauge: **Pressure Sensor**
+
+    ---
+
+    The depth sensor and the internal hull pressure sensor: calibration slope, amplifier gain, the sea-level zero, and diagnosing bad depth readings.
+
+    [:octicons-arrow-right-24: Pressure Sensor](pressure-sensor/index.md)
 
 </div>
