@@ -65,3 +65,6 @@ forum-dump/
 
 # Local tooling — kept out of the repo
 tools/
+
+# Private companion notes — extra per-component detail not for publication
+private/
