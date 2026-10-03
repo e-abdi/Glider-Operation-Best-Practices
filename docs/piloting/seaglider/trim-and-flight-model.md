@@ -145,6 +145,45 @@ flight-model fit** (buoyancy + lift + drag) and the **three-dive regression**
 further. Remember that stratification shows up here too: a slow climb isn't
 necessarily bad trim, it may just be lighter water.
 
+Two quick reads from the dive plot that say the glider is trimmed **light**
+(neutral set too far toward buoyant, so `$C_VBD` should go *up*):
+
+- Observed vertical velocity turns positive (starts rising) well **before**
+  the buoyancy trace crosses zero.
+- Dive rates look normal but **climb rates are much faster** than desired.
+
+In one such case the manufacturer's support team estimated `$C_VBD` needed
+to rise by at least 140 counts. Conversely, sanity-check any suggested change
+against the trend: on one glider whose `$C_VBD` had just been raised from
+2330 to 2420, the regression proposed jumping to 2917, while the dives
+pointed to backing off slightly (~2385). Ignore a suggestion like that, keep
+the intermediate value, move in modest steps (tens of counts) while watching
+the next dives — and try to work out from the plots why the fit went wrong.
+
+### Surface trim — `$SM_CC`
+
+`$SM_CC` is how much the VBD pumps at the surface to lift the antenna. Every
+cc costs energy, so once the mission is settled it is worth trimming down:
+
+- Reduce it **~50 cc at a time** while watching `$SM_DEPTHo` (the depth the
+  glider sits at during the surface maneuver). Stop when the surface depth
+  starts to increase.
+- Keep it comfortably above what the glider needs to be neutral near the
+  surface — a common rule of thumb is **≥ 150 cc above the VBD position at
+  ~1 m**. One glider was taken down to 300 cc this way, with 250 cc
+  judged a reasonable next step.
+- If the glider starts needing **multiple call attempts** after a reduction,
+  the antenna is no longer high enough — go back up.
+- Pumped-CTD gliders that only sample on the climb, and whose CTD stops
+  some metres below the surface, leave the near-surface part of the VBD
+  diagnostic plot empty; use the shallowest available depth instead of 1 m
+  and keep extra margin.
+
+A glider that is fundamentally ballasted too light for the water (see
+[Re-ballasting for a new density](../../ballasting/seaglider/trim-sheet-and-reballasting.md#re-ballasting-for-a-new-density))
+can't be fixed with `$SM_CC` alone — lowering it saves a little energy but
+won't put the antenna where it needs to be.
+
 ### Roll trim
 
 Two plots, and a heuristic:
@@ -211,6 +250,32 @@ to match dive-by-dive. IOP practice:
     `FM_vbdbias` estimates can be the first symptom of a CT problem rather
     than a real volume change.
 
+### When the volume regression blows up
+
+A regression that reports **"too few valid points"** on most dives, then an
+absurd `vbdbias` (hundreds or thousands of cc) and a hint to "try
+reprocessing with volmax = …", is almost never a flight-model problem. It
+means the model is starting from the wrong **mass or volmax** — typically
+because the tank ballast was off and the glider is much heavier or lighter
+than the numbers it was given. What to do:
+
+1. Once `$C_VBD` is well tuned, back-calculate: the best-known **mass**
+   (scale weight, or summed trim-sheet mass) and the **density at apogee**
+   fix what volmax must really be. Ballasting teams can do this from the
+   trim sheet and the in-mission `$C_VBD`.
+2. Set the corrected `$MASS` on the glider and `mass` / `volmax` in
+   `sg_calib_constants.m`.
+3. **Reprocess the dives** with the new file in place. Each netCDF stores a
+   copy of the calibration constants it was built with, so editing the `.m`
+   file alone changes nothing for dives already processed.
+4. If you are fitting by hand, use a small non-zero starting `vbdbias`, deep
+   dives for the volume fit, and dives that span a range of pitch and
+   buoyancy for the lift/drag fit.
+
+The same symptom appeared on a mission flown with an out-of-date `mass` in
+the command file (a ~120 g difference from the trim sheet) — the plots the
+pilots were trimming from were simply wrong until it was corrected.
+
 ### Reprocessing old missions
 
 Any previous mission can be re-run through the modern FMS: install
@@ -244,6 +309,9 @@ cross it perpendicular unless it's pushing you the right way:
 
 ## See also
 
+- [Trim Sheet & Re-ballasting](../../ballasting/seaglider/trim-sheet-and-reballasting.md)
+  — changing target density, thrust margin, calibrating the trim sheet
+  against observed centers.
 - [Dive Cycle & Control Files](dive-cycle-and-control-files.md) — where
   `$C_VBD`, `$MAX_BUOY`, `$D_FLARE` and friends fit in the dive; deck-dive
   data hygiene that keeps FMS running.
