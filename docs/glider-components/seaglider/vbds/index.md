@@ -443,6 +443,8 @@ hours under full vacuum to confirm the fix.
   4095 on a linear pot during its first dive, recovered on the next, and
   was then lost after its second dive. The cause was never found, but in
   hindsight the pegged reading was the warning to act on.
+- A correctly filled bladder measures **about 37 cm** around its widest
+  part when fully inflated (`$VBD_MIN`).
 - **Anything mounted in the aft fairing must clear the fully inflated
   bladder.** For example, a PAM recorder housing sits with its connector
   end toward the bladder, placed just aft of the bladder at full inflation
