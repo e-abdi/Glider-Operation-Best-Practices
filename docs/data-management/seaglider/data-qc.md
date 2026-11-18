@@ -494,3 +494,5 @@ affect QC:
 - [Pressure Sensor](../../glider-components/seaglider/pressure-sensor/index.md): zeroing and depth errors
 - [Compass Calibration](../../piloting/seaglider/compass-calibration.md): heading errors feed the DAC
 - [Dive Cycle & Control Files](../../piloting/seaglider/dive-cycle-and-control-files.md): run phases, `$ERRORS`, deck dives
+- [CTD Post-Processing](../shared/ctd-post-processing.md): checks and corrections beyond what the basestation does
+- [Submitting to Data Centres](../shared/submitting-to-data-centres.md): the GliderDAC extension and uploads

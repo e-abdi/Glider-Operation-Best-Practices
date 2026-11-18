@@ -308,6 +308,9 @@ directions on dives and climbs. Expect pycnocline depths to differ by
   pump, not a processing problem. Look at raw conductivity around
   inflections. It often clears at sea, but not always.
 
+More on the method and on judging the result:
+[CTD Post-Processing](../shared/ctd-post-processing.md#3-correct-thermal-lag).
+
 ### Oxygen optodes
 
 The optode has a large thermal lag. Logging the **phase** output lets you
@@ -366,6 +369,8 @@ experienced must decide whether the corrected data is actually better.
 ## See also
 
 - [Seaglider Data Quality Control](../seaglider/data-qc.md): how the Seaglider basestation does all of this automatically
+- [CTD Post-Processing](../shared/ctd-post-processing.md): thermal lag, reference checks and TEOS-10 in more detail
+- [Data Formats & Standards](../shared/formats-and-standards.md) and [Submitting to Data Centres](../shared/submitting-to-data-centres.md): writing and sending the files
 - [Slocum Iridium](../../glider-components/slocum/iridium/index.md): call-ins and data transfer
 - [Slocum FreeWave](../../glider-components/slocum/freewave/index.md): pulling full files at close range
 - [Slocum Mission Files](../../piloting/slocum/mission-files.md): mission setup

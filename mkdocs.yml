@@ -72,6 +72,9 @@ plugins:
       media_type: print
       enabled_if_env: ENABLE_PDF_EXPORT
       combined: false
+  - redirects:
+      redirect_maps:
+        piloting/seaglider/data-qc.md: data-management/seaglider/data-qc.md
   - minify:
       minify_html: true
 
@@ -215,6 +218,12 @@ nav:
     - Slocum:
       - data-management/slocum/index.md
       - Data Processing & QC: data-management/slocum/data-processing-qc.md
+    - All Platforms:
+      - data-management/shared/index.md
+      - Data Formats & Standards: data-management/shared/formats-and-standards.md
+      - Submitting to Data Centres: data-management/shared/submitting-to-data-centres.md
+      - CTD Post-Processing: data-management/shared/ctd-post-processing.md
+      - Serving Data with ERDDAP: data-management/shared/serving-data-erddap.md
 
   - Glider Components:
     - glider-components/index.md
@@ -283,3 +292,5 @@ nav:
       - Thruster: glider-components/slocum/thruster/index.md
 
       - O-Rings: glider-components/slocum/o-rings/index.md
+
+      - Science Sensors: glider-components/slocum/science-sensors/index.md

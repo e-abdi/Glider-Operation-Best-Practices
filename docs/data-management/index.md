@@ -35,3 +35,43 @@ so the pages are organised by glider.
     [:octicons-arrow-right-24: Slocum Data Management](slocum/index.md)
 
 </div>
+
+## All Platforms
+
+Steps that are the same whatever the glider.
+
+<div class="grid cards" markdown>
+
+-   :material-file-table-outline: **Data Formats & Standards**
+
+    ---
+
+    NGDAC, EGO and OG1.0 netCDF, CF conventions, metadata, QC flag schemes and compliance checkers.
+
+    [:octicons-arrow-right-24: Data Formats & Standards](shared/formats-and-standards.md)
+
+-   :material-cloud-upload-outline: **Submitting to Data Centres**
+
+    ---
+
+    The US Glider DAC, Coriolis and OceanOPS: registration, WMO IDs, uploads, and archiving.
+
+    [:octicons-arrow-right-24: Submitting to Data Centres](shared/submitting-to-data-centres.md)
+
+-   :material-thermometer-water: **CTD Post-Processing**
+
+    ---
+
+    Units, sensor alignment, thermal lag, reference checks and TEOS-10 quantities.
+
+    [:octicons-arrow-right-24: CTD Post-Processing](shared/ctd-post-processing.md)
+
+-   :material-server-network: **Serving Data with ERDDAP**
+
+    ---
+
+    Running your own ERDDAP server for glider timeseries, profiles and grids.
+
+    [:octicons-arrow-right-24: Serving Data with ERDDAP](shared/serving-data-erddap.md)
+
+</div>

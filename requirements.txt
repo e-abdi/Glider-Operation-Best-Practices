@@ -1,6 +1,7 @@
 # Core
 mkdocs==1.6.1
 mkdocs-material==9.7.6
+mkdocs-redirects==1.2.2
 
 # PDF export (per-page download buttons)
 # Requires WeasyPrint system libraries — see README or .github/workflows/deploy.yml
