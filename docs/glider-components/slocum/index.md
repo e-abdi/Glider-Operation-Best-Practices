@@ -109,4 +109,12 @@ Documentation for Slocum glider hardware components and subsystems.
 
     [:octicons-arrow-right-24: O-Rings](o-rings/index.md)
 
+-   :material-flask-outline: **Science Sensors**
+
+    ---
+
+    Field notes on the payload: the pumped CTD's `mincondfreq`, optode cable and bulkhead failures on G3s, SUNA wiring and mounts, and acoustic receivers.
+
+    [:octicons-arrow-right-24: Science Sensors](science-sensors/index.md)
+
 </div>

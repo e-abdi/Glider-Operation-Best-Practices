@@ -212,7 +212,7 @@ releases.
 | 24 | `MS_ABORT_LEAK` | `m_leak` is non-zero (a leak detector tripped) |
 | 25 | `MS_ABORT_VACUUM` | `m_vacuum` outside `vacuum_min … vacuum_max` |
 | 26 | `MS_ABORT_NO_HEADING_MEASUREMENT` | No compass heading |
-| 27 | `MS_ABORT_STALLED` | Not making vertical progress |
+| 27 | `MS_ABORT_STALLED` | Not making forward progress (computed `m_speed` too low); see [Stalled](#stalled-27) |
 | 28 | `MS_ABORT_DE_PUMP_IS_IDLE` | Nothing commanded the deep electric pump |
 | 29 | `MS_ABORT_DE_PUMP_NOT_ENABLED` | Deep pump needed but not enabled |
 | 30 | `MS_ABORT_CPU_LOADED` | Cycle time overran too many times in a row |
@@ -249,7 +249,7 @@ firing too eagerly — but **loosen them only with a real reason and a lab test*
 | `undervolts(volts)` | 10.0 | `UNDERVOLTS` | Triggered by `m_battery`. Leave at 10 for alkaline |
 | `samedepth_for(sec)` | 1800 | `SAMEDEPTH` | Stuck-at-depth detector |
 | `samedepth_for_sample_time(sec)` | 30 | — | Older missions used 10–15 s; raise toward 30 |
-| `stalled_for(sec)` | 1800 | `STALLED` | No vertical progress |
+| `stalled_for(sec)` | 1800 | `STALLED` | Computed speed too low |
 | `no_cop_tickle_for(sec)` | 48600 | `NO_TICKLE` | Keep **below** the hardware timeout (2 h / 16 h) |
 | `no_cop_tickle_percent(%)` | −1 | `NO_TICKLE` | Rev E+ boards: abort this % *before* the hardware would |
 | `no_comms_tickle_for(hours)` | 72 | `NO_COMMS_TICKLE` | No comms for 3 days → reset + dial factory number |
@@ -438,6 +438,32 @@ that often cannot be recovered at sea. One field trick that has worked: set
 `f_ballast_pumped_safety_max` to the value the pump is stuck near, which can let
 you `use +` it back and limp toward recovery.
 
+**A buoyancy pump that stalls at the bottom inflection** is the dangerous
+case. The `.mlg` shows the pump trying to move to its climb setting, `NOT
+MOVING FAST ENUF` and `motor_safety_check(): Motor is not measured as
+moving` warnings, the oil volume stuck short of the target, then `Too many
+warnings in last minute` and the pump **taken out of service**. Until the
+abort sequence gets it working again, the glider is still heavy and keeps
+sinking:
+
+- In one case a shallow (100 m) pump stalled at 35 m; the glider sank to
+  the seabed, sat there, and recovered by itself when the pump came back
+  into service.
+- In others the glider kept sinking past the depth limit and **dropped its
+  weight**; the next surfacing showed the watchdog burning the wire while
+  the pump kept reporting oil volume out of deadband.
+
+This is a real stall, not a position-sensor blip. Pumps that do it once
+tend to do it again, so plan a recovery; if you must keep flying, keep
+well clear of the bottom and the depth limit. On the bench, listen for
+grinding or friction on retraction and look inside the forward section for
+**metal shavings**, especially around the motor's brake under the black
+cover at its aft end; a brake stuck partly on makes the motor fight
+friction. Debris in the pump area has also caused it (one glider came back
+with fish in the tail cone). See
+[Shallow Pump](../../glider-components/slocum/pumps/shallow-pump/index.md)
+and [Deep Pump](../../glider-components/slocum/pumps/deep-pump/index.md).
+
 ### Behavior error (6) — "timed out waiting for science to stop logging"
 
 By far the most-reported `BEH_ERROR`. Since firmware 7.14 the glider aborts if
@@ -447,9 +473,38 @@ empty `.tbd`/`.sbd` files and failed file transfers. Contributing factors pilots
 have found: very **large `.sbd`/`.tbd` lists** that drop the connection
 mid-transfer (trim them), flaky sensors (optode/CTD throwing bad strings), and
 the long-mission oddity bug above. It is intermittent — "two in a day, then none
-for a week." Because **sequenced** missions just roll into the next mission, many
+for a week." Another trigger: an **Iridium call that drops while science
+files are being sent** can leave a behavior abort behind; operators have
+seen this across G3 firmware versions and live with it by sequencing
+missions. Because **sequenced** missions just roll into the next mission, many
 operators accept the occasional abort rather than risk losing data; an
 `exit reset` often quiets it for a while.
+
+### Stalled (27) {#stalled-27}
+
+`MS_ABORT_STALLED` is based on **`m_speed`**, which the glider can't
+measure. It computes it from the depth rate and pitch angle; if the pitch is
+too small it falls back to the average mission speed (`m_is_speed_estimated`
+says which, and with a thruster it can use thruster power). So a stall abort
+says "the speed calculation thinks we aren't moving", which can come from:
+
+- **Pitch problems.** A useful rule of thumb: `SAMEDEPTH` points at the
+  buoyancy pump, `STALLED` at the pitch system. A **loose pitch battery**
+  slides forward at the surface and back on the climb, so the first dive
+  and climb look fine. On an underwater inflection into a second dive it
+  can't slide forward again, the glider never reaches its dive angle, and
+  it stalls. `m_battpos` is measured at the traveller, not at the battery,
+  so a loose battery can look nearly normal; look for the motor pushing
+  harder to its end stops on the second dive of a segment. See
+  [Pitch](../../glider-components/slocum/pitch/index.md).
+- **Glide angles that are too shallow.** Below about 18° the speed estimate
+  becomes unreliable, and around 12–16° operators have seen stall aborts.
+- **Buoyancy too close to neutral**, for example a glider ballasted light
+  meeting a freshwater plume, so the depth rate drops near zero.
+
+A glider that stalls at a few metres and then carries on after the abort is
+usually light for the water or flying too flat. Repeated stalls at depth on
+second dives point to the pitch battery.
 
 ### Noinput (12)
 

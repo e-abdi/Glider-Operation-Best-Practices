@@ -172,6 +172,39 @@ goes — give the test plenty of time.
 | Glider in distress is **hard to locate** | Confirm Argos is on; ask Service Argos to enable **ALP**; check the fin antenna isn't degraded (**no reflective tape on the fin**). Pair with a [pinger](../digifin/index.md) and strobe for recovery. |
 | Want to **save power** with Argos off | Rarely worth it — Argos is low-power. Only `use - argos` as a last resort far from recovery; revisit the [power-saving page](../../../piloting/slocum/power-saving.md) first. |
 
+### Finding a glider by Argos
+
+Recovering a glider by Argos alone is rare (one group has needed it once in
+seven years, another twice in fifteen) but it does happen: when Iridium
+fails, when the main battery is dead and only the beacon is left, or for a
+glider washed up or grounded.
+
+- **Argos positions arrive with a delay** and vary in quality. Keep only the
+  good-quality fixes, estimate the drift, and project it forward to where
+  the glider will be when you get there.
+- **A direction finder** (goniometer, "Argos platform finder") gives a
+  bearing to the beacon from the boat. Users report it leads straight to the
+  glider once you are close to the projected position; others found the
+  bearing rough and needed a lot of triangulation. Without one, expect hours
+  of searching a grid around the last positions. Direction finders are
+  expensive; groups with only one or two gliders have shared one with
+  animal-tagging labs, who use them to find pop-up tags.
+- **Once within a few kilometres** of a glider that still has power, a
+  FreeWave radio and a laptop give exact positions straight from the glider.
+- If the field team has no SFMC access, send positions to the boat by
+  satellite or mobile phone at regular intervals.
+
+### Acoustic beacons as a backup
+
+An acoustic transmitter on the glider helps find one that has sunk or is
+near the seabed. One group fits an acoustic fish-tag transmitter in
+transmit mode on every glider. It gives little bearing or range, but after
+one glider sank they drifted a receiver across the last known position and
+built a probable-location map from detection strength. Small 69 kHz fish
+tags have been detected around 550 m away about half the time. The
+transmit-mode unit that group uses is no longer made, so check what is
+available before relying on one.
+
 !!! note "Argos is for finding, not flying"
     Argos sends position **only** — you cannot command the glider over it. It is the
     one-way backstop that turns a lost glider into a search *area*, which is why it

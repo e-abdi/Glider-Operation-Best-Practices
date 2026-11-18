@@ -37,6 +37,33 @@ Quick-reference notes for common Slocum operations. This page grows over time â€
 
 ---
 
+## Powering an Open Glider
+
+To troubleshoot science sensors with the hull open, run on external (shore)
+power with the motors unplugged rather than relying on simulation:
+
+1. Unplug everything **forward of the science bay** (move the forward pump
+   aside on the cart if you need room to take off the science bay's front
+   plate).
+2. Unplug the **air pump** from the main board, and note it so you plug it
+   back in.
+3. Power up. Expect a burst of errors; the forward pump and pitch motor will
+   drop out of service.
+4. `Ctrl-C` into the boot shell, then `consci` and `uart` to talk to the
+   sensor you're troubleshooting.
+5. If you need the application running, start it from the shell with
+   `app -lab -uninstall <device> <device> â€¦` for the devices you've
+   unplugged (typically the Iridium, the forward pump and the pitch motor).
+
+!!! warning "Be careful with `just_electronics` simulation for this"
+    Old firmware could damage hardware in `just_electronics` mode. Even on
+    current firmware, troubleshooting in simulation risks chasing a
+    simulation quirk instead of the real fault, and a misunderstanding of the
+    simulation state with a **shallow pump still plugged in** can damage the
+    pump.
+
+---
+
 ## Air Bladder Before Disassembly
 
 !!! warning "Deflate the air bladder (`put c_air_pump 0`) before disassembling the glider."
@@ -58,6 +85,11 @@ Quick-reference notes for common Slocum operations. This page grows over time â€
 ## CTD Dry-Run Limit
 
 !!! warning "Never run the pumped CTD (Seabird SBE) dry for more than 30 seconds at a time."
+
+In a bench simulation the CTD normally won't pump at all: its
+`mincondfreq` setting (usually 3000 Hz) keeps the pump off until the
+conductivity frequency shows it is in water of roughly 25 PSU or more. Check
+the value with `ds` when talking to the CTD.
 
 ---
 

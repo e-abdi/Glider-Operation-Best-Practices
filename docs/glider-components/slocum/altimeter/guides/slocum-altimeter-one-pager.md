@@ -253,6 +253,26 @@ Mitigations operators have used:
     `u_alt_reqd_good_in_a_row` good fixes) drives inflection. Use the raw values
     for diagnosis, not for predicting flight behaviour.
 
+### The opposite problem: grounding with good raw hits
+
+`u_alt_reqd_good_in_a_row` works both ways. One G2 grounded once or twice
+per deployment and sat on the bottom until its timeout. The full-resolution
+`dbd` showed normal `m_raw_altitude` values and voltage, but **never enough
+in a row** to update `m_altitude`, so the `.mlg` never showed `Complete
+reached altitude` or `deduced altitude from water depth`. Other gliders with
+the same settings were fine, and turning off reduced-usage mode or raising
+the inflection altitude didn't help. A new altimeter control board didn't
+either.
+
+- Check the **full-resolution** data: decimated `sbd` files can't tell you
+  whether hits were consecutive.
+- For a glider at sea, **lower `u_alt_reqd_good_in_a_row`** to 2 or 1 and
+  accept more false bottom hits; a false inflection is better than a
+  grounding.
+- If it persists across deployments, replace the **altimeter** (and its
+  board, if not done already). Sediment in the nose cone is a less likely
+  cause for a repeating problem.
+
 ---
 
 ## `m_altimeter_status` codes

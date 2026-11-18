@@ -99,6 +99,26 @@ Bellofram are a death sentence for a shallow pump.**
     not profiling to full depth, ask Glider Support about
     `m_pump_effective_num_cycles`.
 
+### Tracking pump wear: `m_pump_stress` and `m_pump_health`
+
+`m_tot_num_inflections` counts **half-yos** (every dive/climb change) plus
+surfacing commands, not full pump cycles, and it rises fast in shallow
+water: around 14,000 in six weeks in under 200 m is normal. A shallow
+inflection also wears the pump less than a deep one. Recent firmware
+(11.07 masterdata) tracks this for you:
+
+| Sensor | Meaning |
+|---|---|
+| `m_inflection_depth` | Depth of the bottom inflection on this cycle |
+| `m_pump_stress` | Relative stress of this cycle. **1 for deep pumps**; for shallow pumps a linear function of inflection depth (`f_pump_stress_m`, `f_pump_stress_b`), so a 200 m inflection counts more than a 50 m one |
+| `m_pump_effective_num_cycles` | Running total of the stress, in equivalent full cycles |
+| `f_pump_stress_num_cycles` | Cycles to failure (default 10,000) |
+| `m_pump_health` | Remaining life, 0–100 %: (`f_pump_stress_num_cycles` − `m_pump_effective_num_cycles`) / `f_pump_stress_num_cycles` |
+
+`m_pump_effective_num_cycles` must be in the **longterm** sensors so it
+survives resets, and must be **reset when a new pump is fitted**. Log
+`m_pump_health` with each service so you know when a pump is due.
+
 ---
 
 ## How to test

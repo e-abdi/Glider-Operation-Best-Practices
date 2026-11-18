@@ -229,6 +229,30 @@ glider's own sensors.
 
 ---
 
+## Deploying over FreeWave
+
+Many groups launch from small boats over FreeWave rather than Iridium. The
+procedure is the same as an Iridium launch, with two differences:
+
+- **Everything is quicker.** You can afford to pull the **full** flight and
+  science files (`s *.*`) after the initial mission and each test dive,
+  instead of the decimated real-time files, and look at them before
+  committing to the mission.
+- **Stay within range** of the glider while testing: about 1 km in practice,
+  depending on antenna height and weather.
+
+A typical on-station checkout with test dives takes 2–3 hours, depending on
+the number of sensors and how deep the test dives go. Start from Teledyne's
+deployment checklist and adapt it to your configuration.
+
+Once the mission is running, check that the glider has gone back to
+Iridium and that surfacing notifications arrive. One operator found the
+terminal still showed a FreeWave ("modem") connection after a FreeWave
+launch and got no surfacing emails until the mission was stopped, a
+callback issued, and the mission restarted over Iridium.
+
+---
+
 ## Field troubleshooting
 
 | Symptom | Things to check |
@@ -238,6 +262,9 @@ glider's own sensors.
 | Can't reach an **older glider** with a shared master | That glider's slave may not be set to "call all" / may have Slave Security on; needs the special cable to reconfigure (contact support). |
 | Bench board powered but **no Freewave comms** | Confirm the glider-side modem has power — check voltage across the Freewave connector power pins; check TX/RX signal pins; confirm board is actually booting (a powered, booting flight board draws a few mA, not ~0). |
 | Master not seen by **Dockserver** (rings, lights, but no pickup) | Confirm the right `/dev/ttyUSB*` is mapped to `freewave` in `dockServerState.xml`; verify you can reach the modem with `minicom` while Dockserver is stopped (rules out the cable/port). |
+| Dockserver won't start after editing the port in `dockServerState.xml` | The file belongs to the dock server's own account: edit with `sudo`, keep the XML valid, and declare the extra port rather than replacing the existing one. Read the dock server log (`journalctl -u sfmc-dockserver`). A symlink from the actual device to the configured one works as a stop-gap. |
+| **Clicking from the tail** while sending large **science** files on a G3S; transfer hangs, glider resets to its safe state but the FreeWave stays connected to the hung science computer | Reported once, with no confirmed cause; it needed a power cycle to recover. Send large science files in smaller batches and report it to Teledyne. |
+| Extended-range master antenna won't connect | It just needs a coax cable (N-type at the antenna, with an adapter at the radio) in place of the small whip antenna. |
 | Two gliders, one antenna | Operators have asked about a coax splitter feeding one antenna for dual-glider deployments — not a documented Teledyne setup; expect reduced link margin and test before relying on it. |
 
 !!! tip "Local terminal access"

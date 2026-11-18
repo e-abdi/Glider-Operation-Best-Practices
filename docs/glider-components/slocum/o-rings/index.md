@@ -57,21 +57,13 @@ A defining hardware difference between the platforms:
 ## Part numbers — full spares kit
 
 The complete O-ring spares kit is **ASSY 4424** (a smaller kit, **ASSY 4423**,
-covers just the two most-used seals). Contents (part numbers are stable; prices
-are illustrative, ~2012):
+covers just the two most-used seals).
 
 | TWR P/N | Size / material | Where used |
 |---|---|---|
 | **G-024** | `2-265` N674-70 | **Main hull** (G2 single seal) |
 | **304697** | `2-264`, BUNA, ~65D | **Main hull** (G3 double seal) |
 | **G-030** | `3-904` N674-70 | MS vacuum / evacuation boss plug (also G1 unpumped CTD piston seal) |
-| **B1-132** | `2-007` N674-70 | B1 |
-| **G-022** | `2-018` N674-70 | 7/8" |
-| **G-027** | `2-115` N674-70 | 7/8" tail tube |
-| **G-1214** | Parker `5-712` | — |
-| **G-1331** | `2-141` N674-70, NBR | — |
-| **G-1508** | `2-161` N674-70, NBR | — |
-| **G-607** | `5-105` N674-70 | — |
 
 !!! tip "Order by part number and keep a kit aboard"
     Wing-rail weight O-rings (~size 010) and the small vacuum-plug / bullet-weight
@@ -95,7 +87,7 @@ For **electrical connectors** the rules differ — don't cross them:
 | Main hull O-rings & sealing surfaces | **Parker O-Lube 884-4** | — |
 | Impulse connectors | Silicone lubricant | **Any silicone spray containing acetone** (breaks down the connector) |
 | Subcon(n) connectors | **Molykote 44** (Dow Corning) | — |
-| Dummy / green plugs | O-Lube or silicone spray | — |
+| Dummy / green plugs | O-Lube or silicone spray (the maintenance manual) | Sprays that aren't rated as dielectric |
 | Bellofram / pump rubber | **Molykote 316** or 3M Silicone Lubricant | Silicone spray with acetone |
 
 !!! warning "The Parker O-Lube dry-out problem (well known in the fleet)"
@@ -114,6 +106,25 @@ For **electrical connectors** the rules differ — don't cross them:
     - Many stay on the standard Parker O-Lube purely to **avoid doing anything
       non-standard** that could be blamed for a leak, and simply **replace dried
       O-rings** rather than chase a better grease. A reasonable default.
+
+---
+
+### The green GO plug
+
+A GO plug that is hard to pull off after a deployment, with **green
+corrosion on the pins**, is a common complaint. What operators do:
+
+- The maintenance manual says to care for dummy and green plugs with O-Lube
+  or silicone spray and to **keep the pins clean**. Several groups use a drop
+  of O-Lube on the pins. If you use a spray, make sure it is safe as a
+  dielectric.
+- Others follow the connector maker's dry-mate procedure: a thin film of
+  **Molykote 44** on the female contacts, mate, unmate to check that every
+  male pin was coated, wipe the excess off the contacts, and mate again.
+  Because doing that with the GO plug means powering the glider on and off,
+  one operator practises the check with dummy plugs on both sides first.
+
+See [Connectors](../../shared/connectors/index.md) for general connector care.
 
 ---
 
@@ -141,6 +152,17 @@ For **electrical connectors** the rules differ — don't cross them:
     shelf in a dry shop. Check them as part of every pre-deployment workup; some
     teams have moved wing-rail-weight O-rings to **silicone** to resist
     drying/cracking.
+
+### Buying O-rings elsewhere
+
+The G3 main hull O-ring is a standard size (2-264, about 7.48 in ID × 0.139 in
+cross-section) in **nitrile (Buna-N), 60 durometer**. General suppliers stock
+the same size, but typically in **50 or 70 durometer**, not 60, so it isn't a
+like-for-like swap. Check with Teledyne before substituting. (Seagliders and
+many oceanographic shops use 70 durometer as standard.) One operator found
+a recent batch of factory O-rings below their usual quality: black residue
+that took several isopropyl wipes to remove, and a fine moulding ridge on
+some rings. Inspect new O-rings too.
 
 ---
 
@@ -214,6 +236,20 @@ temperature alongside vacuum.
   (commercial or DIY McMaster-fitting builds), or helium leak detectors (accurate
   but expensive). No method is foolproof — **cleanliness and inspection** remain
   the best defense.
+- **Helium spray testing has a catch.** Teledyne has suggested it for slow
+  leaks, but a leak-testing service pointed out that sprayed helium spreads
+  through the room and gets into the glider whichever way it leaks, so it
+  doesn't show *where*. For a slow leak (for example 6 to 4 inHg over three
+  weeks), swapping suspect parts one at a time and re-checking the vacuum
+  may get there sooner. A soapy-water bubble test needs internal pressure
+  and only finds large leaks; ask Teledyne before pressurising a hull.
+- **The vacuum pump's gauge doesn't matter much.** Gauges on vacuum pumps
+  often read wrong. Pull more vacuum than you need and bleed down to the
+  target using the **glider's `m_vacuum`**, the only reading that counts.
+  If you replace a gauge, any vacuum gauge with the right thread (1/4 in NPT
+  on common kits) will do; an oil-filled one damps the needle, and a range
+  that goes slightly positive shows when it isn't reading zero at
+  atmospheric pressure.
 
 ---
 

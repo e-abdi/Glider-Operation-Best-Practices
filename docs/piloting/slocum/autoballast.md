@@ -133,6 +133,28 @@ Watch these in the surface dialog every piloting day:
 Raise `u_diveclimb_msg_print` to `2` (basic) if you want autoballast to narrate
 what it is doing.
 
+!!! note "No `AB:` lines in the `.mlg`?"
+    The autoballast notes describe `.mlg` lines starting with `AB:`, but recent
+    firmware doesn't print them by default (the masterdata default for
+    `u_diveclimb_msg_print` is 1, which isn't one of its documented levels:
+    −1 none, 0 errors only, 2 basic, 99 all). Set it to 2 or 99 to get them back.
+
+### Worked example: state 5 on a deep pump
+
+A G3 with a deep pump asked for 600 cc of total drive and sat at
+`c_autoballast_state = 5`, with `c_climb_bpump = 420` and `c_dive_bpump =
+−180`. The standard G3 deep pump only has about **±420 cc**, so the climb
+setting was at the pump's limit: the glider was **heavy**, its climbs slower
+than its dives, and autoballast had no room to balance them. The fixes:
+
+- If you can accept flying slower, **reduce the total drive** (400–500 cc in
+  this case) so there is room on the climb side.
+- Otherwise the glider needs re-ballasting.
+
+Once autoballast converges, the **midpoint** of `c_dive_bpump` and
+`c_climb_bpump` is roughly how far off neutral the glider is (in cc ≈ grams),
+which tells you how much ballast error to look for.
+
 ---
 
 ## Resetting autoballast in the field

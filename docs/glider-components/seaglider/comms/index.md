@@ -254,6 +254,9 @@ main comms have died.
     white, not responding to the magnet) and had to go back for service.
   - A direction-finding receiver ("platform finder") speeds up recovery
     from a boat.
+- **Which Argos tag?** Operators fit wildlife tags such as the SPOT-F, or
+  the SPOT-420A, chosen by one group for its longer endurance on year-long
+  deployments at the cost of less precise positions.
 
 ---
 

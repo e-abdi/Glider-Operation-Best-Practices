@@ -86,6 +86,14 @@ the dive/climb (`d_`) and climb-to-surface (`c_`) halves of a yo:
   down to hit a depth rate, etc.) — the first thing to read when it's not
   behaving.
 
+!!! warning "To turn the thruster off, set it to 0; don't comment it out"
+    Once a mission or `ma` file has turned the thruster on, the value
+    **sticks**. Commenting out the `use_thruster` / `thruster_value` lines in
+    a later `yo` file doesn't turn it off: the behavior keeps the last
+    value it loaded, and the glider keeps thrusting. Set `b_arg:
+    c_use_thruster(enum) 0` (and the `d_` version) **explicitly**. This has
+    been seen on older firmware and again on 10.08.
+
 !!! note "Two device drivers"
     The motor controller is declared as one of two devices:
 

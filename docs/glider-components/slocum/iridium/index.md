@@ -62,6 +62,36 @@ with `put` to test, but the persistent values belong in `autoexec.mi`.
   how your firmware and Dockserver are configured rather than assuming, and test
   both numbers before relying on the fallback.
 
+### How the failover works, and getting back to RUDICS
+
+Every failed call on the current number increments `m_iridium_attempt_num`.
+After `u_iridium_failover_retries` failures (default 5) the glider switches
+to the other number. `c_iridium_current_num` shows which number it is on:
+**0 = primary, 1 = alternate**. Check with Teledyne whether the attempt
+counter resets after a good connection on your firmware; on older releases
+it didn't.
+
+A glider that has failed over **stays on the dial-up backup** until
+something sends it back. That costs more airtime, and the shared backup
+lines at the factory-hosted SFMC are limited: if every line is taken by
+other gliders, yours gets a busy signal. Groups that use the factory server
+for both RUDICS and the modem backup add a step to their surfacing
+**script**:
+
+1. Add `c_iridium_current_num` to the surface dialog.
+2. If it reads 1, have the script send `Ctrl-E` (if needed) and then
+   `h 0 0`, which hangs up and calls back on the primary number.
+
+To test the script safely: run it during a normal primary connection, then
+at a later surfacing pause the script, force the call to the backup with
+`h 0 1`, resume the script while the glider is disconnected, and confirm
+it sends the glider back to RUDICS. Try new scripts in simulation first
+(a lab SFMC, then a simulator calling the live SFMC over Iridium).
+
+To check the backup line itself, dial it from a phone: a modem tone after a
+ring or so is normal; busy means all lines are in use; anything else means
+the modem needs attention from whoever hosts it.
+
 ---
 
 ## The surface comms sequence
@@ -106,6 +136,45 @@ the vehicle back and forth between shore and boat through the glider.
 
 ---
 
+## Hosting: the factory SFMC or your own
+
+Most groups use the SFMC hosted by Teledyne. It has had outages and slow
+periods: `504 Gateway Time-out` errors, maintenance windows, a terminal
+that stops updating live (commands only show after a page refresh), and
+more frequent "Websocket error" pop-ups that clear on refresh. Gliders keep
+flying their loaded mission without a pilot, so an outage mostly hurts
+during launch, recovery and problem-solving. Scripts kept working when the
+live terminal didn't. Ask before a launch if a maintenance window has been
+announced.
+
+Groups running **their own SFMC** report:
+
+- **Low maintenance once set up** (about 1–2 person-hours a year, mostly
+  system updates). Setting it up is the hard part.
+- **A static IP address** that stays put long term is essential; RUDICS
+  points at it. Cloud servers (for example an AWS instance) work well.
+- **Pointing your SIMs at the new IP** costs money with some Iridium
+  providers (one group paid about $500 per glider). Creating a **new RUDICS
+  group** for your server makes it easy, and usually free, to switch back to
+  the factory server.
+- Keep the factory server as the **modem backup**; there is no RUDICS
+  secondary number. Some also keep a test server as a warm spare, on a
+  redundant internet connection.
+- Teledyne's packages can lag behind on the **PostgreSQL** version, which has
+  caused package-manager trouble when the old version went out of support.
+- If you edit the server's own files (for example to change the FreeWave
+  serial port in `dockServerState.xml`), use `sudo`, and check the dock
+  server log (`journalctl -u sfmc-dockserver`) if it won't start afterwards.
+
+RUDICS itself occasionally has regional problems: in 2026 one group saw
+gliders fail to reach their own server for nearly a day while backup calls
+worked; Argo floats saw RUDICS delays at the same time. If a glider goes
+quiet but is otherwise healthy, check Argos positions, and remember that a
+glider with no comms keeps repeating its mission as long as it gets GPS
+fixes and nothing aborts.
+
+---
+
 ## SIM card and service
 
 - The Iridium phone and **SIM card are configured at the factory** (`talk
@@ -122,6 +191,10 @@ the vehicle back and forth between shore and boat through the glider.
     minutes/day per glider** with data-reduction techniques applied — on the order
     of **~$100/day**. Expect **significantly more on your first deployment** while
     you monitor, test, and learn; ~75–90 min/day is a steady-state plan.
+
+Idle SIMs cost little (around $21/month per card from one provider in
+2026), so many fleets don't bother pausing service between deployments.
+Some providers will suspend a plan if you ask.
 
 ---
 

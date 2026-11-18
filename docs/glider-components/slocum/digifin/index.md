@@ -200,6 +200,42 @@ put f_digifin_movement_retry_max -1   # retry forever, never warn on a stuck fin
     workaround some set `x_fin_deadband` directly. (A related steering "hardover"
     bug was fixed as Mantis #1615 in release 7.14.)
 
+### Diagnosing a spiral from the surface
+
+The signature of a spiral is the fin **flipping between full port and full
+starboard** while the heading rotates: the autopilot says "turn right"
+while the target is within 180° one way, then "turn left" once it is within
+180° the other way. The glider surfaces on time but has gone almost nowhere.
+
+- **Check your sampling before trusting the plot.** Real-time `sbd` files
+  are decimated. With `m_fin` every 2 minutes and `m_heading` every 10
+  minutes, a fast spiral aliases into a pattern that looks random. To
+  confirm a suspected ongoing spiral, temporarily log `c_fin`, `m_fin`,
+  `c_heading` and `m_heading` every ~15 s in the `sbdlist` and send the
+  glider on a short (~15 min) dive.
+- **Plot together**: `c_fin`, `m_fin`, `m_roll`, `m_pitch`, `c_pitch`,
+  pressure, vertical speed, buoyancy volume, `m_heading`, `c_heading`.
+  Changes in pitch, roll or ballasting at the same time point to something
+  physical on the glider.
+- **Persistent spirals**: the fin knocked out of alignment, for example by a
+  billfish or squid strike (strikes have broken welds in the tail
+  assembly), or biofouling.
+- **A single bad dive that clears by itself**: most likely something
+  temporarily entangled: seaweed or jellyfish if it started at the surface,
+  jellyfish, squid or octopus if it started at depth. If one dive is the
+  only event, don't change the `sbdlist`; look at the full-resolution
+  `dbd`/`ebd` after recovery.
+
+!!! warning "Current correction mode 2 bug"
+    Operators on 11.04 have seen segments where **`c_heading` was never
+    computed**, so `c_fin` was never computed either: the fin sat at 0 and
+    the glider drifted with the current. Sometimes `c_heading` appeared
+    mid-segment while `c_fin` stayed empty. It started weeks into a mission
+    and came with unrealistically strong depth-averaged currents. It
+    stopped after switching `u_use_current_correction` from **2 to 1**.
+    Others have seen the same with mode 2 and suspect a bug. If a glider
+    goes off course for no obvious reason with mode 2 on, try mode 1.
+
 ---
 
 ## Reducing rudder noise (and saving power)
@@ -216,6 +252,13 @@ put u_heading_deadband 0.261        # ~15°
 put u_heading_rate_deadband 0.0261
 put u_hd_fin_ap_run_time 120
 ```
+
+These settings are aggressive: one group that tried them for passive
+acoustics got much quieter audio but noticeably more heading meander,
+with the fin spending more time hard over (fewer but larger moves). The
+sweet spot between navigation and silence takes some experimenting. The
+newer **G3 Radome fins** were found to be quieter, which removed the need
+for that group.
 
 In **low power mode**, the fin autopilot uses separate gains
 (`u_low_power_hd_fin_ap_gain` / `_igain` / `_dgain`); in strong currents the

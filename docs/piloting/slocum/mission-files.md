@@ -406,6 +406,71 @@ mission runs "forever." Keep known-good copies of `initial.mi` and
     stray non-comment line, a waypoint in decimal degrees) are cheap to catch on
     the bench and very expensive to discover at sea.
 
+### Changing the `sbdlist` / `tbdlist` mid-mission
+
+Uploading a new `sbdlist.dat` doesn't change what the glider logs until it
+re-reads the list, and the command to do that is unreliable:
+
+- On G3S with 11.04, `!sbd load sbdlist.dat` printed `SOFTWARE ERROR!
+  save_sensors_to_file illegal filename extention` and reported failure,
+  yet the next surfacing's files followed the new list. Several groups now
+  send it and ignore the error. Without the command, the new list was not
+  picked up on its own.
+- With **file compression on**, the load command has been reported to fail;
+  turning compression off (`put u_use_file_compression 0`), loading, and
+  turning it back on works.
+- **Stopping and restarting the mission** reliably picks up the new list,
+  without a reboot. That needs a pilot at the surfacing; queued commands
+  through the SFMC API can't toggle a mission.
+
+Confirm the change in the next set of files before relying on it.
+
+### Changing `autoexec.mi` settings at sea
+
+Editing `autoexec.mi` remotely is risky: if the upload is truncated the
+glider may not start properly. For a single `u_` setting, put it in the
+**longterm** sensors or in the mission instead.
+
+### When the glider restarts by itself
+
+If you find the glider running **`initial.mi`** without having asked for
+it, it has **rebooted**: `initial.mi` is only started automatically at
+power-up. Confirm it:
+
+- Device error, warning and oddity counts are back at or near zero.
+- The mission time in the surface dialog has restarted.
+- `get m_why_started` gives the start-up reason (not very informative, but
+  worth recording).
+- `sys.log` shows `APP_start` and a new mission start.
+
+A missing GPS position in `initial.mi` is normal: after a restart the glider
+dials Iridium before it gets a fix. What operators have found behind
+spontaneous resets:
+
+- **Around six weeks into a mission**, often after hundreds of `…_ctrl ran
+  too long` messages and (on 11.00) `timestamp in the future` entries in the
+  `.mlg`. A planned stop/restart avoids it (see
+  [Aborts](aborts.md)).
+- **Resets with no log entries at all** happen too fast to log anything and
+  point to **power brown-outs**. Battery-pack anomaly messages from the
+  battery management system (`Battery Pack anomaly detected: AFT current …`)
+  at start-up are not unusual on their own; repeated resets with them are.
+  Treat repeated unexplained resets as a reason to recover: one group lost a
+  glider this way.
+- Older firmware (10.x) reset when `m_low_power` was set too high.
+- On older (Persistor) G3s, a corrupt storage card. Check cards before
+  each mission.
+
+Set an SFMC notification for `initial.mi` starting, alongside the ones for
+aborts and `lastgasp.mi`, so you see a reset the first time it happens.
+
+### Harmless warnings
+
+`DRIVER_WARNING:gps:-22:gps_parse_and_publish() warning` at the top of
+inflections during yos is normal: the GPS switches on whenever the glider
+is shallower than `u_reqd_depth_at_surface`, including at the top of a yo
+that doesn't surface. Nothing to change.
+
 ---
 
 ## How a mission encodes "all the reasons the glider comes up"

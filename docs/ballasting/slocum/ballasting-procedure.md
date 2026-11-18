@@ -148,6 +148,44 @@ Teledyne — these are starting points, not a substitute for the spreadsheet.
 
 ---
 
+## Changing batteries without a full re-ballast
+
+There are no standard air weights for battery packs: primary packs in
+particular vary from set to set, which is one of the main reasons gliders
+need re-ballasting between deployments. When you swap packs on a glider
+that was already neutral (for example rechargeables for primaries before a
+long mission):
+
+1. **Weigh the packs coming out and the packs going in.**
+2. Adjust the internal ballast by the difference before closing up.
+3. Use external weight for any fine adjustment.
+4. **Always do a dunk afterwards** to confirm. Small changes have a way of
+   adding up to numbers you didn't expect.
+
+---
+
+## Roll that drifts during a mission
+
+A glider ballasted at 0° roll can come back weeks later with a roll offset
+that changed gradually or in steps, with no change in speed or pitch and no
+wing damage. Known causes:
+
+- **The air bladder shifting.** Each inflation at the surface moves it
+  slightly, and friction holds part of the shift after it deflates. Its
+  weight and its buoyancy both put a torque on the hull. Signature: roll
+  changes **only across surfacings** (small steps that look gradual, then
+  sometimes a larger slip).
+- **The aft battery shifting on its pins**, especially on G3S. If you roll
+  the glider in the tank until a wing comes out of the water you may hear
+  a clunk as it moves; that alone gave a 2–3° roll change. Some groups now
+  **bolt the aft battery** in place.
+- **Hull sections rotating** relative to each other under torque if the
+  joints are over-greased.
+- A drifting roll **sensor**: check against the tank before blaming the
+  mechanics.
+
+---
+
 ## H-moment
 
 H-moment is the distance — **5–6 mm is ideal, 4–7 mm acceptable** (bias
