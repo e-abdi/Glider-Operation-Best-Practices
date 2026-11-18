@@ -234,24 +234,113 @@ The glider resumes its last active target from nonvolatile storage after a
 reset; otherwise it starts at the first listed target. `$HEADING` overrides
 the navigation logic entirely (fly a fixed course).
 
+!!! info "Heading convention: which way is 90?"
+    Seaglider headings follow the ordinary compass-bearing convention:
+    **0° (= 360°) is north, angles increase clockwise** looking down from
+    above, so **90° = east, 180° = south, 270° = west**. A heading that is
+    *increasing* during a dive means the glider is turning to **starboard
+    (right)**; *decreasing* means it is turning to port (left).
+
+    Watch which north is meant:
+
+    | Where you see it | Reference |
+    |------------------|-----------|
+    | `$HEADING` (cmdfile), target bearings, `finish=` | **True** north |
+    | `head` column in the `.eng` file, desired heading in `$MHEAD_RNG_PITCHd_Wd` (log file) | **Magnetic** north |
+
+    The two differ by the local magnetic variation (logged as `magvar`,
+    positive east). A hand compass also reads magnetic, which is why it is
+    the right thing to compare against the glider's `head` on deck (see
+    [Compass Calibration](compass-calibration.md)).
+
+    Example: `$NAV_MODE,0` with `$HEADING,90` steers the glider **due
+    east (true)**. In the `.eng` file this shows up as about 90° minus the
+    variation: around 105° where variation is 15° W, around 75° where it is
+    15° E.
+
 ### `science` — sampling and G&C by depth band
 
-Depth-binned, **tab-separated** lines (tabs, not spaces — a classic
-hand-editing pitfall; `sciedit` gets it right):
+There is one line per depth bin, ordered from shallow to deep. A bin runs from
+the previous line's depth (or the surface) down to its own depth. Any line
+starting with `/` is a comment. Fields are separated by **tabs, not spaces**.
+Hand edits often get this wrong; `sciedit` gets it right.
+
+You will see two layouts in the wild.
+
+**Keyword layout** (current documentation and Rev E gliders):
 
 ```text
-// depth  gc-interval  sampling  sensor-mask  compass  pressure
-45	gc=60	seconds=5	sensors=11	compass=1	pressure=1
-1000	gc=180	seconds=15	sensors=12	compass=1	pressure=1
+// depth  gc-interval  sampling  sensor-mask  profile  compass  pressure
+45	gc=60	seconds=5	sensors=11	profile=33	compass=1	pressure=1
+1000	gc=180	seconds=15	sensors=12	profile=33	compass=1	pressure=1
 ```
 
-Each line gives, for all depths down to `bottom_depth`: the G&C interval
-(seconds), the base sensor sampling interval (seconds), a **sensor mask** (one
-digit per installed sensor in `$SENSORS` order — `0` = off, `1` = every
-interval, `2` = every 2nd, and so on), and compass/pressure intervals as
-multipliers of the base interval. On gliders fitted with a **science
-controller (scicon)**, sensor scheduling moves to `scicon.sch` and the
-`science` file's sensor mask is ignored — it then mainly sets G&C intervals.
+**Positional layout** (older manuals and Rev B gliders on 66.x code):
+
+```text
+/depth	time	sample	gcint	profile
+20	5	110	60	333
+50	10	110	180	312
+200	10	120	300	330
+```
+
+In the positional layout the header line is only a comment. The glider reads
+the fields by **position**: depth, base interval, sensor mask, G&C interval,
+then the optional profile mask.
+
+| Field | Keyword | Position | Meaning |
+|-------|---------|----------|---------|
+| Bin bottom (m) | first field | 1 | Deepest depth this line applies to |
+| Base interval (s) | `seconds=` | 2 (`time`) | Fastest sensor sampling interval in the bin. It also sets how often depth and the compass are read |
+| Sensor mask | `sensors=` | 3 (`sample`) | One digit per sensor, in `$SENSORS` / self-test slot order (up to six). `0` = off, `1` = every interval, `2` = every 2nd, … up to `8` |
+| G&C interval (s) | `gc=` | 4 (`gcint`) | How often active guidance & control runs |
+| Profile mask | `profile=` | 5 | One digit per sensor: `0` = off, `1` = dive only, `2` = climb only, `3` = both |
+| Compass / pressure | `compass=`, `pressure=` | — | Sampling as a multiplier of the base interval |
+
+Sampling interval for a sensor = base interval × that sensor's mask digit.
+For example, `seconds=5` with `sensors=121` samples the 1st and 3rd sensors
+every 5 s and the 2nd every 10 s.
+
+On gliders fitted with a **science controller (scicon)**, sensor scheduling
+(including dive/climb selection) moves to `scicon.sch`, and the `science`
+file's sensor mask is ignored. The file then mainly sets G&C intervals and
+the base depth/compass interval.
+
+!!! tip "The `profile` column is not new"
+    The dive/climb profile mask already appears in the 66.12-era file-format
+    documentation, and it is in everyday use on current gliders. It is
+    optional: leave it out and every enabled sensor samples on both dive and
+    climb, the same as all `3`s. Dropping it is a valid way to rule it out
+    while troubleshooting. You lose nothing as long as you wanted both casts
+    anyway.
+
+!!! warning "When the glider rejects or misreads the `science` file"
+    Check these, roughly in order of how often they cause trouble:
+
+    1. **Spaces instead of tabs** between fields, often from copying a file
+       out of an email or a word processor.
+    2. **Digit count.** `sensors=` and `profile=` each need one digit per
+       installed sensor, matching the slot list the self-test prints
+       ("Sensor in slot 1 is …"). If you add or remove a sensor, every line
+       needs updating.
+    3. **Mixed layouts.** Keep a file all-keyword or all-positional. Don't
+       paste a keyword line into a positional file, or the reverse, and don't
+       use a layout your firmware doesn't support. If in doubt, copy the
+       layout of the `science` file the glider shipped with, or the last one
+       it accepted (the basestation keeps a dive-numbered copy each time it
+       takes one up).
+    4. **Depths not strictly increasing**, or a last bin shallower than the
+       deepest dive. Make the last bin at least as deep as `$D_TGT` and
+       `$D_ABORT`.
+    5. **Windows line endings / stray characters.** Normally tolerated, but
+       worth checking on an otherwise "correct" file. Trailing `^Z` padding
+       after a transfer is normal.
+
+    To see how the glider read the file, run a self-test or a deck dive and
+    look in the capture file. As it crosses each bin it logs a
+    `Changing to bin …` line listing the `sec=`, `gc=` and `sensors=`
+    values it is using. Missing or odd values point straight at the line it
+    misread.
 
 ### `pdoscmds.bat` — housekeeping
 
